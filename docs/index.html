@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>水滴保,保你省</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/iconfont.css">
+    <link rel="stylesheet" href="https://unpkg.com/vuep/dist/vuep.css">
+    <style>
+      .sidebar {
+        width: 200px;
+      }
+      .content {
+        left: 200px;
+      }
+      .sidebar-toggle {
+        width: auto;
+      }
+      .markdown-section {
+        margin: 0 20px;
+        max-width: none;
+      }
+      .autoTable td {
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;
+      }
+      .autoTable td .i-space {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1;
+        width: 14px;
+        height: 14px;
+      }
+      .autoTable .iconfont{
+        cursor: pointer;
+        font-size: 16px;
+        background: #383838;
+        color: #fff;
+        border-radius: 50%;
+      }
+      .vuep {
+        height: auto;
+      }
+      .vuep-editor {
+        display: none;
+      }
+      .vuep-preview {
+        width: 100%;
+        margin: 0;
+        padding: 2px 5px;
+        height: auto;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">loading...</div>
+    <script>
+      window.$docsify = {
+        loadSidebar: true,
+        loadNavbar: true,
+        maxLevel: 3,
+        subMaxLevel: 2,
+        logo: './assets/favicon.ico',
+        auto2top: true,
+        name: '水滴保,保你省',
+        search: {
+          placeholder: 'Type to search',
+          noData: 'No Results!',
+          paths: 'auto',
+          depth: 2,
+          maxAge: 86400000, // 1 day
+          hideOtherSidebarContent: false
+        },
+        plugins: [
+          function(hook, vm) {
+            hook.beforeEach(function(html) {
+              return (
+                html +
+                `\n\n----\n\n` +
+                '联系: <a href="mailto:tianxiaoyan@shuidihuzhu.com;renchenggong@shuidihuzhu.com;xuyangtao@shuidihuzhu.com">水滴保</a> '
+              )
+            })
+          }
+        ]
+      }
+    </script>
+    <script src="//unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="./assets/plugins.js"></script>
+    <script src="./assets/interfaces.js"></script>
+    <script src="//unpkg.com/vuep/dist/vuep.min.js"></script>
+    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+    <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-json.min.js"></script>
+  </body>
+</html>
