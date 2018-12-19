@@ -181,6 +181,20 @@ const defaults_key = {
     isReq: '',
     desc: 'yyyy-MM-dd HH:mm:ss'
   },
+  protectPeriodType: {
+    key: 'protectPeriodType',
+    name: '保障期限类型',
+    type: 'Integer',
+    isReq: '',
+    desc: '1按天保2按月保3按年保4保至某确定年龄5保终身'
+  },
+  protectPeriodValue: {
+    key: 'protectPeriodValue',
+    name: '保障期限\n',
+    type: 'Integer',
+    isReq: '',
+    desc: ''
+  },
   payTime: {
     key: 'payTime',
     name: '电子保单Url',
@@ -225,7 +239,7 @@ const defaults_key = {
   },
   policyNo: {
     key: 'policyNo',
-    name: '保险公司承保订单号',
+    name: '保单号',
     type: 'String',
     isReq: '',
     desc: ''
@@ -394,6 +408,8 @@ const interfaces = {
             defaults_key.issueTime,
             defaults_key.effectTime,
             defaults_key.invalidTime,
+            defaults_key.protectPeriodType,
+            defaults_key.protectPeriodValue,
             defaults_key.totalPremium,
             defaults_key.totalAmount,
             defaults_key.periodFrequency,
@@ -491,7 +507,7 @@ const interfaces = {
       desc: '',
       children: [
         defaults_key.orderNo,
-        defaults_key.proposalNo,
+        defaults_key.policyNo,
         defaults_key.refundReqTime,
         defaults_key.refundEffectTime,
         defaults_key.refundType,
@@ -518,7 +534,7 @@ const interfaces = {
       desc: '',
       children: [
         defaults_key.orderNo,
-        defaults_key.proposalNo,
+        defaults_key.policyNo,
         defaults_key.refundPremium,
         defaults_key.refundTime
       ]
@@ -534,7 +550,7 @@ const interfaces = {
       desc: '',
       children: [
         defaults_key.orderNo,
-        defaults_key.proposalNo,
+        defaults_key.policyNo,
         defaults_key.payTime,
         defaults_key.periodType,
         {
@@ -559,7 +575,7 @@ const interfaces = {
       type: 'RenewOrderResultBody',
       isReq: 'N',
       desc: '成功时必传',
-      children: [defaults_key.orderNo, defaults_key.proposalNo]
+      children: [defaults_key.orderNo, defaults_key.policyNo]
     }
   ],
   退保请求: [
@@ -572,7 +588,7 @@ const interfaces = {
       desc: '',
       children: [
         defaults_key.orderNo,
-        defaults_key.proposalNo,
+        defaults_key.policyNo,
         defaults_key.refundMoney,
         defaults_key.refundEffectTime,
         defaults_key.refundTime,
