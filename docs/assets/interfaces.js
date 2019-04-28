@@ -44,42 +44,35 @@ const defaults_key = {
     key: 'errorMsg',
     name: '状态的描述',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   orderNo: {
     key: 'orderNo',
     name: '水滴订单号',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   supplierProductNo: {
     key: 'supplierProductNo',
-    name: '合作商产品编号',
+    name: '附加险编号',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   applyNum: {
     key: 'applyNum',
     name: '投保份数',
     type: 'Int',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   premium: {
     key: 'premium',
-    name: '保费',
+    name: '年化保费',
     type: 'Int',
-    isReq: '',
-    desc: ''
-  },
-  applyNum: {
-    key: 'applyNum',
-    name: '投保份数',
-    type: 'Int',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   proposalNo: {
@@ -89,60 +82,53 @@ const defaults_key = {
     isReq: 'Y',
     desc: ''
   },
-  proposalNo: {
-    key: 'proposalNo',
-    name: '投保单号',
-    type: 'String',
-    isReq: '',
-    desc: ''
-  },
   proposalTime: {
     key: 'proposalTime',
     name: '核保时间',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: 'yyyy-MM-dd HH:mm:ss'
   },
   amont: {
     key: 'amount',
     name: '保额',
     type: 'Long',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   totalPremium: {
     key: 'totalPremium',
-    name: '总保费',
+    name: '年化保费',
     type: 'Long',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   totalAmount: {
     key: 'totalAmount',
     name: '总保额',
     type: 'Long',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
-  periodFrequency: {
-    key: 'periodFrequency',
+  payFrequency: {
+    key: 'payFrequency',
     name: '交费频次',
     type: 'Int',
-    isReq: '',
+    isReq: 'Y',
     desc: '0：趸交；1：月缴；2：季度缴；3：半年缴；4：年缴；'
   },
   periodType: {
     key: 'periodType',
     name: '续费类型',
     type: 'Int',
-    isReq: '',
+    isReq: 'Y',
     desc: '1.一次付清；2.分次交费'
   },
   totalPeriod: {
     key: 'totalAmount',
     name: '总交费期数',
     type: 'Int',
-    isReq: '',
+    isReq: 'Y',
     desc:
       '总的交费期数（举例，一月交一次，交一年：periodFrequency=1，totalPeriod=12）'
   },
@@ -150,84 +136,189 @@ const defaults_key = {
     key: 'issueTime',
     name: '投保时间',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: 'yyyy-MM-dd HH:mm:ss'
   },
   relType: {
     key: 'relType',
     name: '和投保人关系',
     type: 'Int',
-    isReq: '',
+    isReq: 'Y',
     desc: '1：本人 2：配偶 3：父母 4：子女 0：其他'
   },
   hasSocial: {
     key: 'hasSocial',
     name: '是否参加社保',
     type: 'Boolean',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   effectTime: {
     key: 'effectTime',
     name: '保单生效时间',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: 'yyyy-MM-dd HH:mm:ss'
   },
   invalidTime: {
     key: 'invalidTime',
     name: '保单失效时间',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: 'yyyy-MM-dd HH:mm:ss'
   },
   protectPeriodType: {
     key: 'protectPeriodType',
     name: '保障期限类型',
     type: 'Integer',
-    isReq: '',
+    isReq: 'Y',
     desc: '1按天保2按月保3按年保4保至某确定年龄5保终身'
   },
   protectPeriodValue: {
     key: 'protectPeriodValue',
-    name: '保障期限\n',
+    name: '保障期限',
     type: 'Integer',
-    isReq: '',
-    desc: ''
+    isReq: 'Y',
+    desc: 'protectPeriodType为5时该字段固定为1'
   },
+    firstPeriodPremium: {
+        key: 'firstPeriodPremium',
+        name: '首期保费',
+        type: 'Long',
+        isReq: 'Y',
+        desc: ''
+    },
+    payPeriodType: {
+        key: 'payPeriodType',
+        name: '交费期限类型',
+        type: 'Integer',
+        isReq: 'Y',
+        desc: '1：趸交2按年限交3交至某确定年龄'
+    },
+    payPeriodValue: {
+        key: 'payPeriodValue',
+        name: '交费年限',
+        type: 'Integer',
+        isReq: 'Y',
+        desc: '趸交时为0'
+    },
+    payFrequency: {
+        key: 'payFrequency',
+        name: '交费频率',
+        type: 'Integer',
+        isReq: 'Y',
+        desc: '0：趸交；1：月缴；2：季度缴；3：半年缴；4：年缴；'
+    },
+    isRenewPolicy: {
+        key: 'isRenewPolicy',
+        name: '是否是续保订单',
+        type: 'Boolean',
+        isReq: 'Y',
+        desc: ''
+    },
+    parentPolicyNo: {
+        key: 'parentPolicyNo',
+        name: '原始保单号',
+        type: 'String',
+        isReq: 'N',
+        desc: '续保订单时使用'
+    },
+    familyBasePolicy: {
+        key: 'familyBasePolicy',
+        name: '家庭基础保单号',
+        type: 'String',
+        isReq: 'N',
+        desc: '趸只有家庭单，非首单才有'
+    },
+    productChannel: {
+        key: 'productChannel',
+        name: '销售渠道',
+        type: 'Integer',
+        isReq: 'N',
+        desc: '1：电销共建；4：网电共建'
+    },
+    saleNo: {
+        key: 'saleNo',
+        name: '销售人编码',
+        type: 'String',
+        isReq: 'N',
+        desc: ''
+    },
+    idValidType: {
+        key: 'idValidType',
+        name: '证件有效期类型',
+        type: 'Integer',
+        isReq: 'N',
+        desc: '1.到期失效；2：永久有效'
+    },
+    idValidDay: {
+        key: 'idValidDay',
+        name: '证件有效期截止时间',
+        type: 'String',
+        isReq: 'N',
+        desc: 'idValidType为2时可以为空，格式为: yyyy-MM-dd'
+    },
+    height: {
+        key: 'height',
+        name: '身高',
+        type: 'String',
+        isReq: 'N',
+        desc: '单位：厘米（支持一位小数）'
+    },
+    weight: {
+        key: 'weight',
+        name: '体重',
+        type: 'String',
+        isReq: 'N',
+        desc: '单位：千克（支持一位小数）'
+    },
+    occupation: {
+        key: 'occupation',
+        name: '职业',
+        type: 'String',
+        isReq: 'N',
+        desc: '1：电销共建；4：网电共建'
+    },
+    annualEarnings: {
+        key: 'annualEarnings',
+        name: '年收入',
+        type: 'String',
+        isReq: 'N',
+        desc: '单位：万元（支持一位小数）'
+    },
   payTime: {
     key: 'payTime',
     name: '电子保单Url',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: 'yyyy-MM-dd HH:mm:ss'
   },
   refundReqTime: {
     key: 'refundReqTime',
     name: '退保请求时间',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: '本次退保，水滴公司第一次发起请求的时间'
   },
   refundEffectTime: {
     key: 'refundEffectTime',
     name: '退保生效时间',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: 'yyyy-MM-dd HH:mm:ss'
   },
   refundTime: {
     key: 'refundTime',
     name: '保险公司操作的退保时间',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: 'yyyy-MM-dd HH:mm:ss'
   },
   refundType: {
     key: 'refundType',
     name: '退保类型',
     type: 'Int',
-    isReq: '',
+    isReq: 'Y',
     desc: '0：有效期内用户发起退保；1：分期产品，超过宽限期未续费自动退保'
   },
   policyUrl: {
@@ -241,7 +332,7 @@ const defaults_key = {
     key: 'policyNo',
     name: '保单号',
     type: 'String',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   policyTime: {
@@ -262,21 +353,21 @@ const defaults_key = {
     key: 'refundMoney',
     name: '应退金额',
     type: 'Long',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   payPremiun: {
     key: 'payPremiun',
     name: '本次支付保费',
     type: 'Long',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   periodNum: {
     key: 'periodNum',
     name: '本次期数',
     type: 'Int',
-    isReq: '',
+    isReq: 'Y',
     desc: ''
   },
   UserInfo: [
@@ -284,23 +375,38 @@ const defaults_key = {
       key: 'name',
       name: '姓名',
       type: 'String',
-      isReq: '',
+      isReq: 'Y',
       desc: ''
     },
     {
       key: 'idType',
       name: '证件类型',
       type: 'Int',
-      isReq: '',
+      isReq: 'Y',
       desc: '见附录'
     },
     {
       key: 'idCode',
       name: '证件号码',
       type: 'String',
-      isReq: '',
+      isReq: 'Y',
       desc: ''
     },
+      {
+          key: 'idValidType',
+          name: '证件有效期类型',
+          type: 'Integer',
+          isReq: 'N',
+          desc: '1.到期失效；2：永久有效'
+      },
+      {
+          key: 'idValidDay',
+          name: '证件有效期截止时间',
+          type: 'String',
+          isReq: 'N',
+          desc: 'idValidType为2时可以为空，格式为: yyyy-MM-dd'
+      },
+
     {
       key: 'gender',
       name: '性别',
@@ -315,6 +421,34 @@ const defaults_key = {
       isReq: 'N',
       desc: 'yyyy-MM-dd'
     },
+      {
+          key: 'height',
+          name: '身高',
+          type: 'String',
+          isReq: 'N',
+          desc: '单位：厘米（支持一位小数）'
+      },
+      {
+        key: 'weight',
+        name: '体重',
+        type: 'String',
+        isReq: 'N',
+        desc: '单位：千克（支持一位小数）'
+      },
+      {
+        key: 'occupation',
+        name: '职业',
+        type: 'String',
+        isReq: 'N',
+        desc: '1：电销共建；4：网电共建'
+      },
+      {
+        key: 'annualEarnings',
+        name: '年收入',
+        type: 'String',
+        isReq: 'N',
+        desc: '单位：万元（支持一位小数）'
+      },
     {
       key: 'mobile',
       name: '手机号',
@@ -381,27 +515,41 @@ const interfaces = {
       key: 'body',
       name: '请求主体',
       type: 'ProposalOrderRequestBody',
-      isReq: '',
+      isReq: 'Y',
       desc: '',
       children: [
         {
           key: 'orderInfo',
           name: '订单信息',
           type: 'OrderInfo',
-          isReq: '',
+          isReq: 'Y',
           desc: '',
           children: [
             defaults_key.orderNo,
             {
+              key: 'productNo',
+              name: '水滴产品编码',
+              type: 'String',
+              isReq: 'Y',
+              desc: '水滴保打包后的产品编码，需要保险公司自己记录映射关系'
+            },
+            {
               key: 'orderMains',
-              name: '',
+              name: '附加险信息',
               type: 'List<OrderMain>',
-              isReq: '',
+              isReq: 'N',
               desc: '一般size为1',
               children: [
                 defaults_key.supplierProductNo,
                 defaults_key.applyNum,
                 defaults_key.premium,
+                {
+                  key: 'firstPremium',
+                  name: '首期保费',
+                  type: 'Long',
+                  isReq: 'Y',
+                  desc: '非分险种产品时与firstPeriodPremium相同'
+                },
                 defaults_key.amont
               ]
             },
@@ -410,17 +558,24 @@ const interfaces = {
             defaults_key.invalidTime,
             defaults_key.protectPeriodType,
             defaults_key.protectPeriodValue,
+            defaults_key.firstPeriodPremium,
             defaults_key.totalPremium,
             defaults_key.totalAmount,
-            defaults_key.periodFrequency,
-            defaults_key.totalPeriod
+            defaults_key.payPeriodType,
+            defaults_key.payPeriodValue,
+            defaults_key.payFrequency,
+              defaults_key.isRenewPolicy,
+              defaults_key.parentPolicyNo,
+              defaults_key.familyBasePolicy,
+              defaults_key.productChannel,
+              defaults_key.saleNo,
           ]
         },
         {
           key: 'applyUser',
           name: '投保人信息',
           type: 'UserInfo',
-          isReq: '',
+          isReq: 'Y',
           desc: '',
           children: defaults_key.UserInfo
         },
@@ -470,7 +625,7 @@ const interfaces = {
           key: 'orderNo',
           name: '水滴订单号',
           type: 'String',
-          isReq: '',
+          isReq: 'Y',
           desc: ''
         },
         defaults_key.proposalNo,
@@ -515,7 +670,7 @@ const interfaces = {
           key: 'reson',
           name: '退保原因',
           type: 'String',
-          isReq: '',
+          isReq: 'Y',
           desc: ''
         }
       ]
@@ -584,7 +739,7 @@ const interfaces = {
       key: 'body',
       name: '请求信息的主体',
       type: 'RefundNoticeRequestBody',
-      isReq: '',
+      isReq: 'Y',
       desc: '',
       children: [
         defaults_key.orderNo,
@@ -596,7 +751,7 @@ const interfaces = {
           key: 'reason',
           name: '退款的原因',
           type: 'String',
-          isReq: '',
+          isReq: 'Y',
           desc: ''
         }
       ]
