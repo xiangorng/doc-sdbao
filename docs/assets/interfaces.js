@@ -29,7 +29,7 @@ const defaults_key = {
   code: {
     key: 'code',
     name: '本次请求执行的状态',
-    type: 'Int',
+    type: 'Integer',
     isReq: 'Y',
     desc: '成功：0；失败：1（失败时errorMsg和errorCode必传）'
   },
@@ -64,14 +64,14 @@ const defaults_key = {
   applyNum: {
     key: 'applyNum',
     name: '投保份数',
-    type: 'Int',
+    type: 'Integer',
     isReq: 'Y',
     desc: ''
   },
   premium: {
     key: 'premium',
     name: '年化保费',
-    type: 'Int',
+    type: 'Integer',
     isReq: 'Y',
     desc: ''
   },
@@ -110,24 +110,17 @@ const defaults_key = {
     isReq: 'Y',
     desc: ''
   },
-  payFrequency: {
-    key: 'payFrequency',
-    name: '交费频次',
-    type: 'Int',
-    isReq: 'Y',
-    desc: '0：趸交；1：月缴；2：季度缴；3：半年缴；4：年缴；'
-  },
   periodType: {
     key: 'periodType',
     name: '续费类型',
-    type: 'Int',
+    type: 'Integer',
     isReq: 'Y',
     desc: '1.一次付清；2.分次交费'
   },
   totalPeriod: {
     key: 'totalAmount',
     name: '总交费期数',
-    type: 'Int',
+    type: 'Integer',
     isReq: 'Y',
     desc:
       '总的交费期数（举例，一月交一次，交一年：periodFrequency=1，totalPeriod=12）'
@@ -142,7 +135,7 @@ const defaults_key = {
   relType: {
     key: 'relType',
     name: '和投保人关系',
-    type: 'Int',
+    type: 'Integer',
     isReq: 'Y',
     desc: '1：本人 2：配偶 3：父母 4：子女 0：其他'
   },
@@ -228,14 +221,14 @@ const defaults_key = {
         name: '家庭基础保单号',
         type: 'String',
         isReq: 'N',
-        desc: '趸只有家庭单，非首单才有'
+        desc: '只有家庭单，非首单才有'
     },
     productChannel: {
         key: 'productChannel',
         name: '销售渠道',
         type: 'Integer',
         isReq: 'N',
-        desc: '1：电销共建；4：网电共建'
+        desc: '1：电销共建；5：网电共建'
     },
     saleNo: {
         key: 'saleNo',
@@ -316,11 +309,25 @@ const defaults_key = {
   },
   refundType: {
     key: 'refundType',
-    name: '退保类型',
-    type: 'Int',
+    name: '操作类型',
+    type: 'Integer',
     isReq: 'Y',
     desc: '0：有效期内用户发起退保；1：分期产品，超过宽限期未续费自动退保'
   },
+    refundMoneyType: {
+        key: 'refundMoneyType',
+        name: '退保类型',
+        type: 'Integer',
+        isReq: 'N',
+        desc: 'refundType为0时必传；；；0：正常，按照退款试算接口返回的金额退款；1：全额退款；2：退当期保费'
+    },
+    refundActPremium: {
+        key: 'refundActPremium',
+        name: '实际退款金额',
+        type: 'Long',
+        isReq: 'N',
+        desc: 'refundType为0时必传；；；申请退款的实际退款金额，若对本退款金额有异议，保险公司请务必返回失败'
+    },
   policyUrl: {
     key: 'policyUrl',
     name: '电子保单Url',
@@ -340,7 +347,7 @@ const defaults_key = {
     name: '保险公司出单时间',
     type: 'String',
     isReq: 'N',
-    desc: ''
+    desc: 'yyyy-MM-dd HH:mm:ss'
   },
   refundPremium: {
     key: 'refundPremium',
@@ -366,9 +373,9 @@ const defaults_key = {
   periodNum: {
     key: 'periodNum',
     name: '本次期数',
-    type: 'Int',
+    type: 'Integer',
     isReq: 'Y',
-    desc: ''
+    desc: '2、3、4'
   },
   UserInfo: [
     {
@@ -381,7 +388,7 @@ const defaults_key = {
     {
       key: 'idType',
       name: '证件类型',
-      type: 'Int',
+      type: 'Integer',
       isReq: 'Y',
       desc: '见附录'
     },
@@ -410,9 +417,9 @@ const defaults_key = {
     {
       key: 'gender',
       name: '性别',
-      type: 'Int',
+      type: 'Integer',
       isReq: 'N',
-      desc: '1男2女0未说明'
+      desc: '1男2女'
     },
     {
       key: 'birthday',
@@ -505,7 +512,14 @@ const defaults_key = {
       isReq: 'N',
       desc: ''
     }
-  ]
+  ],
+    periodOrderNo: {
+        key: 'periodOrderNo',
+        name: '续期订单号',
+        type: 'String',
+        isReq: 'Y',
+        desc: '每期唯一'
+    }
 }
 
 const interfaces = {
@@ -538,7 +552,7 @@ const interfaces = {
               name: '附加险信息',
               type: 'List<OrderMain>',
               isReq: 'N',
-              desc: '一般size为1',
+              desc: '非附加险产品时为空',
               children: [
                 defaults_key.supplierProductNo,
                 defaults_key.applyNum,
@@ -589,6 +603,60 @@ const interfaces = {
             defaults_key.relType,
             defaults_key.hasSocial
           ])
+        },
+        {
+            key: 'smartProposal',
+            name: '智能核保',
+            type: 'SmartProposal',
+            isReq: 'N',
+            desc: '',
+            children: [{
+                key: 'questionAndAnswer',
+                name: '',
+                type: 'List<QuestionAndAnswer>',
+                isReq: 'N',
+                desc: '',
+                children: [{
+                    key: 'diseaseName',
+                    name: '疾病名称',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                    {
+                        key: 'question',
+                        name: '问题',
+                        type: 'String',
+                        isReq: 'Y',
+                        desc: ''
+                    },
+                    {
+                        key: 'answer',
+                        name: '答案',
+                        type: 'String',
+                        isReq: 'Y',
+                        desc: ''
+                    },
+                    {
+                        key: 'level',
+                        name: '问题层级',
+                        type: 'Integer',
+                        isReq: 'Y',
+                        desc: ''
+                    }]
+            },
+                {key: 'resultType',
+                    name: '最终结论类型',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '1标体投保 2个别疾病除外投保'
+                },
+                {key: 'resultDesc',
+                    name: '除外疾病描述',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: 'resultType为2时，此字段不能为空，为不包括在保险内的疾病名称，以英文逗号分隔'
+                }]
         }
       ]
     }
@@ -608,7 +676,21 @@ const interfaces = {
         defaults_key.orderNo,
         defaults_key.totalPremium,
         defaults_key.proposalNo,
-        defaults_key.proposalTime
+        defaults_key.proposalTime,
+          {
+              key: 'needOffline',
+              name: '需要线下操作',
+              type: 'Boolean',
+              isReq: 'N',
+              desc: ''
+          },
+          {
+              key: 'offlineMsg',
+              name: '进行线下操作时展示的文案',
+              type: 'String',
+              isReq: 'N',
+              desc: ''
+          }
       ]
     }
   ],
@@ -629,7 +711,35 @@ const interfaces = {
           desc: ''
         },
         defaults_key.proposalNo,
-        defaults_key.payTime
+        defaults_key.payTime,
+          {
+              key: 'bankCode',
+              name: '支付时使用银行卡的银行编码',
+              type: 'String',
+              isReq: 'N',
+              desc: '保险公司需要该信息时需提前与水滴产品经理确认'
+          },
+          {
+              key: 'bankName',
+              name: '支付时使用银行卡的银行名称',
+              type: 'String',
+              isReq: 'N',
+              desc: '保险公司需要该信息时需提前与水滴产品经理确认'
+          },
+          {
+              key: 'bankCardNo',
+              name: '支付时使用银行卡的银行名称',
+              type: 'String',
+              isReq: 'N',
+              desc: '保险公司需要该信息时需提前与水滴产品经理确认'
+          },
+          {
+              key: 'accountName',
+              name: '支付时使用银行卡的开户人姓名',
+              type: 'String',
+              isReq: 'N',
+              desc: '保险公司需要该信息时需提前与水滴产品经理确认'
+          }
       ]
     }
   ],
@@ -666,13 +776,8 @@ const interfaces = {
         defaults_key.refundReqTime,
         defaults_key.refundEffectTime,
         defaults_key.refundType,
-        {
-          key: 'reson',
-          name: '退保原因',
-          type: 'String',
-          isReq: 'Y',
-          desc: ''
-        }
+        defaults_key.refundMoneyType,
+          defaults_key.refundActPremium
       ]
     }
   ],
@@ -684,13 +789,12 @@ const interfaces = {
     {
       key: 'body',
       name: '请求信息的主体',
-      type: 'PolicyOrderRequestBody',
+      type: 'RefundOrderResultBody',
       isReq: 'Y',
       desc: '',
       children: [
         defaults_key.orderNo,
         defaults_key.policyNo,
-        defaults_key.refundPremium,
         defaults_key.refundTime
       ]
     }
@@ -707,13 +811,12 @@ const interfaces = {
         defaults_key.orderNo,
         defaults_key.policyNo,
         defaults_key.payTime,
-        defaults_key.periodType,
         {
           key: 'periods',
           name: '',
           type: 'List<Period>',
           isReq: 'Y',
-          desc: '一次付清时可为空',
+          desc: '',
           children: [defaults_key.payPremiun, defaults_key.periodNum]
         }
       ]
@@ -733,7 +836,7 @@ const interfaces = {
       children: [defaults_key.orderNo, defaults_key.policyNo]
     }
   ],
-  退保请求: [
+  退保通知请求: [
     defaults_key.supplierNo,
     {
       key: 'body',
@@ -747,6 +850,13 @@ const interfaces = {
         defaults_key.refundMoney,
         defaults_key.refundEffectTime,
         defaults_key.refundTime,
+          {
+              key: 'needRefund',
+              name: '是否需要水滴公司进行退款',
+              type: 'Boolean',
+              isReq: 'N',
+              desc: '默认为false，对接前双方业务约定'
+          },
         {
           key: 'reason',
           name: '退款的原因',
@@ -757,7 +867,7 @@ const interfaces = {
       ]
     }
   ],
-  退保返回: [
+  退保通知返回: [
     defaults_key.supplierNo,
     defaults_key.code,
     defaults_key.errorCode,
@@ -774,5 +884,540 @@ const interfaces = {
         defaults_key.refundReqTime
       ]
     }
-  ]
+  ],
+    长险锁单请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'List<RenewLockRequestBody>',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                defaults_key.periodNum,
+                defaults_key.periodOrderNo
+            ]
+        }
+    ],
+    长险锁单返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'List<RenewLockResultBody>',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                defaults_key.periodNum,
+                defaults_key.periodOrderNo,
+                defaults_key.payPeriodType,
+                defaults_key.payPeriodValue,
+                defaults_key.payFrequency,
+                {
+                    key: 'payFrequencyValue',
+                    name: '交费频率数值',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '默认为1'
+                },
+                {
+                    key: 'discountType',
+                    name: '折扣类型',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '1：无 2：折扣活动（默认为1）'
+                },
+                {
+                    key: 'renewalDuePayPremium',
+                    name: '续期应缴保费',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'renewalActualPayPremium',
+                    name: '续期实缴保费',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'discountPremium',
+                    name: '折扣金额',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: '无折扣时为0'
+                },
+                {
+                    key: 'renewalTime',
+                    name: '应交时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'endOfGraceTime',
+                    name: '宽限期截止时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'status',
+                    name: '续期状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '详情见：1.5长险续期状态status'
+                },
+                {
+                    key: 'statusDesc',
+                    name: '续期状态信息描述',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                }
+
+            ]
+        }
+    ],
+    长险扣费结果同步请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'List<RenewPayRequestBody>',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                defaults_key.periodNum,
+                defaults_key.periodOrderNo,
+                {
+                    key: 'renewalDuePayPremium',
+                    name: '续期应缴保费',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'renewalActualPayPremium',
+                    name: '续期实缴保费',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'payMentTime',
+                    name: '扣费日期',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'payMentStatus',
+                    name: '扣费状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '0 成功  1失败 保险公司需要根据这个状态进行相关处理，并对保单进行解锁处理'
+                },
+                {
+                    key: 'paymentMessage',
+                    name: '扣费失败原因',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '当PayMentStatus是1 的时候给出具体扣费失败原因，主要包括用户卡余额不足，用户签约信息异常等'
+                }
+            ]
+        }
+    ],
+    长险扣费结果同步返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'List<RenewPayResultBody>',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                defaults_key.periodNum,
+                defaults_key.periodOrderNo,
+                {
+                    key: 'status',
+                    name: '保险公司处理续期记录额',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '0 成功  1失败 水滴公司根据这个状态进行重试等相关处理'
+                }
+            ]
+        }
+    ],
+    退保试算请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'UpgradeOrderRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                defaults_key.refundReqTime,
+                defaults_key.refundEffectTime
+            ]
+        }
+    ],
+    退保试算返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'UpgradeOrderResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'refundPremium',
+                    name: '应退保费',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: '正常退款时的退款金额'
+                }
+            ]
+        }
+    ],
+    保单升级请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'UpgradeOrderRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'phyExamResult',
+                    name: '体检结果',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '1：标准体 2：优选体'
+                }
+            ]
+        }
+    ],
+    保单升级返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'UpgradeOrderResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                {
+                    key: 'upgradeStatus',
+                    name: '保单升级状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '1：升级完成 2：不进行升级'
+                },
+                {
+                    key: 'policyUrl',
+                    name: '新电子保单地址',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: 'upgradeStatus为1时，该字段为必填'
+                }
+            ]
+        }
+    ],
+    赠险出单请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求主体',
+            type: 'PolicyFreeRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                {
+                    key: 'orderInfo',
+                    name: '订单信息',
+                    type: 'OrderInfo',
+                    isReq: 'Y',
+                    desc: '',
+                    children: [
+                        defaults_key.orderNo,
+                        {
+                            key: 'productNo',
+                            name: '水滴产品编码',
+                            type: 'String',
+                            isReq: 'Y',
+                            desc: '水滴保打包后的产品编码，需要保险公司自己记录映射关系'
+                        },
+                        defaults_key.issueTime,
+                        defaults_key.effectTime,
+                        defaults_key.invalidTime,
+                        defaults_key.protectPeriodType,
+                        defaults_key.protectPeriodValue,
+                        defaults_key.totalPremium,
+                        defaults_key.totalAmount
+                    ]
+                },
+                {
+                    key: 'applyUser',
+                    name: '投保人信息',
+                    type: 'UserInfo',
+                    isReq: 'Y',
+                    desc: '',
+                    children: defaults_key.UserInfo
+                },
+                {
+                    key: 'insuredUsers',
+                    name: '被保人信息',
+                    type: 'List<UserInfo>',
+                    isReq: 'N',
+                    desc: '',
+                    children: defaults_key.UserInfo.concat([
+                        defaults_key.relType,
+                        defaults_key.hasSocial
+                    ])
+                }
+            ]
+        }
+    ],
+    赠险出单返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'PolicyFreeResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                defaults_key.policyTime,
+                defaults_key.policyUrl
+            ]
+        }
+    ],
+    数据同步请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求主体',
+            type: 'DataTransferRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                {
+                    key: 'sdSupplierName',
+                    name: '水滴合作方名称',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: '水滴保存的合作方名称'
+                },
+                {
+                    key: 'pageCount',
+                    name: '总页数',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'pageNo',
+                    name: '当前页数',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '从1开始'
+                },
+                {
+                    key: 'pageSize',
+                    name: '单页的订单数量',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'orderSimples',
+                    name: '新增订单数据',
+                    type: 'List<OrderSimple>',
+                    isReq: 'Y',
+                    desc: '',
+                    children: [
+                        defaults_key.orderNo,
+                        defaults_key.policyNo,
+                        {
+                            key: 'status',
+                            name: '订单状态',
+                            type: 'Integer',
+                            isReq: 'Y',
+                            desc: '4:新增单 12：退保订单'
+                        },
+                        {
+                            key: 'productNo',
+                            name: '产品编码',
+                            type: 'String',
+                            isReq: 'Y',
+                            desc: ''
+                        },
+                        {
+                            key: 'name',
+                            name: '姓名',
+                            type: 'String',
+                            isReq: 'Y',
+                            desc: ''
+                        },
+                        {
+                            key: 'mobile',
+                            name: '手机号',
+                            type: 'String',
+                            isReq: 'N',
+                            desc: ''
+                        },
+                        {
+                            key: 'idType',
+                            name: '证件类型',
+                            type: 'Integer',
+                            isReq: 'Y',
+                            desc: '见附录'
+                        },
+                        {
+                            key: 'idCode',
+                            name: '证件号码',
+                            type: 'String',
+                            isReq: 'Y',
+                            desc: ''
+                        },
+                        defaults_key.effectTime,
+                        defaults_key.invalidTime,
+                        {
+                            key: 'surrenderTime',
+                            name: '保单退保时间',
+                            type: 'String',
+                            isReq: 'N',
+                            desc: 'status为4时该字段为空。yyyy-MM-dd HH:mm:ss'
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    数据同步返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'DataTransferResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                {
+                    key: 'sdSupplierName',
+                    name: '水滴合作方名称',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: '水滴保存的合作方名称'
+                }
+            ]
+        }
+    ],
+    订单状态通知请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'StatusNoticeRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'orderStatus',
+                    name: '订单状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '0.可支付；1.已支付；3：已承保；12：已退保；6：已失效'
+                },
+                {
+                    key: 'needSave',
+                    name: '是否需要水滴下载保存电子保单',
+                    type: 'Boolean',
+                    isReq: 'N',
+                    desc: '只有orderStatus为3时才会处理该字段；；；为true时水滴会按照policyUrl下载保单地址，并存储在水滴'
+                },
+                {
+                    key: 'policyUrl',
+                    name: '电子保单下载地址',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '只有orderStatus为3时才会处理该字段'
+                }
+            ]
+        }
+    ],
+    订单状态通知返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg
+    ],
+    回执确认请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'OrderReceiptRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'receiptTime',
+                    name: '用户签收回执的时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                }
+            ]
+        }
+    ],
+    回执确认返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg
+    ]
 }
