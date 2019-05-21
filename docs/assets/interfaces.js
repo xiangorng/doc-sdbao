@@ -601,7 +601,21 @@ const interfaces = {
           desc: '',
           children: defaults_key.UserInfo.concat([
             defaults_key.relType,
-            defaults_key.hasSocial
+            defaults_key.hasSocial,
+              {
+                  key: 'hospitalName',
+                  name: '医院名称',
+                  type: 'String',
+                  isReq: 'N',
+                  desc: '手术意外专用'
+              },
+              {
+                  key: 'operationName',
+                  name: '手术名称',
+                  type: 'String',
+                  isReq: 'N',
+                  desc: '手术意外专用'
+              }
           ])
         },
         {
