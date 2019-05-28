@@ -700,10 +700,10 @@ const interfaces = {
           },
           {
               key: 'offlineMsg',
-              name: '进行线下操作时展示的文案',
-              type: 'String',
+              name: '进行线下操作时展示的类型',
+              type: 'Integer',
               isReq: 'N',
-              desc: ''
+              desc: '1：累计保费超20万；2：被保人成年人，投保人与被保人不是同一人'
           }
       ]
     }
