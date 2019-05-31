@@ -172,7 +172,7 @@ const defaults_key = {
     name: '保障期限',
     type: 'Integer',
     isReq: 'Y',
-    desc: 'protectPeriodType为5时该字段固定为1'
+    desc: 'protectPeriodType为5时该字段固定为0'
   },
     firstPeriodPremium: {
         key: 'firstPeriodPremium',
