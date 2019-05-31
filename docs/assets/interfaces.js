@@ -1433,5 +1433,39 @@ const interfaces = {
         defaults_key.code,
         defaults_key.errorCode,
         defaults_key.errorMsg
+    ],
+    实际退款同步请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'RefundActRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'refundActTime',
+                    name: '实际退款时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'refundActPremium',
+                    name: '实际退款金额',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: ''
+                }
+            ]
+        }
+    ],
+    实际退款同步返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg
     ]
 }
