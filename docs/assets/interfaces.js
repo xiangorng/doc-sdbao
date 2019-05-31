@@ -1382,7 +1382,7 @@ const interfaces = {
                     name: '订单状态',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '0.可支付；1.已支付；3：已承保；12：已退保；6：已失效'
+                    desc: '1.已支付；3：已承保；12：已退保；6：已失效；0：可支付(线下核保专用，非线下核保切勿同步次状态)；'
                 },
                 {
                     key: 'needSave',
@@ -1429,6 +1429,40 @@ const interfaces = {
         }
     ],
     回执确认返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg
+    ],
+    实际退款同步请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'RefundActRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'refundActTime',
+                    name: '实际退款时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'refundActPremium',
+                    name: '实际退款金额',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: ''
+                }
+            ]
+        }
+    ],
+    实际退款同步返回: [
         defaults_key.supplierNo,
         defaults_key.code,
         defaults_key.errorCode,
