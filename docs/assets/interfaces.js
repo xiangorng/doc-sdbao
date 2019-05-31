@@ -1258,88 +1258,58 @@ const interfaces = {
                     isReq: 'Y',
                     desc: '水滴保存的合作方名称'
                 },
+                defaults_key.orderNo,
+                defaults_key.policyNo,
                 {
-                    key: 'pageCount',
-                    name: '总页数',
+                    key: 'status',
+                    name: '订单状态',
                     type: 'Integer',
+                    isReq: 'Y',
+                    desc: '4:新增单 12：退保订单'
+                },
+                {
+                    key: 'productNo',
+                    name: '产品编码',
+                    type: 'String',
                     isReq: 'Y',
                     desc: ''
                 },
                 {
-                    key: 'pageNo',
-                    name: '当前页数',
-                    type: 'Integer',
-                    isReq: 'Y',
-                    desc: '从1开始'
-                },
-                {
-                    key: 'pageSize',
-                    name: '单页的订单数量',
-                    type: 'Integer',
+                    key: 'name',
+                    name: '姓名',
+                    type: 'String',
                     isReq: 'Y',
                     desc: ''
                 },
                 {
-                    key: 'orderSimples',
-                    name: '新增订单数据',
-                    type: 'List<OrderSimple>',
+                    key: 'mobile',
+                    name: '手机号',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: ''
+                },
+                {
+                    key: 'idType',
+                    name: '证件类型',
+                    type: 'Integer',
                     isReq: 'Y',
-                    desc: '',
-                    children: [
-                        defaults_key.orderNo,
-                        defaults_key.policyNo,
-                        {
-                            key: 'status',
-                            name: '订单状态',
-                            type: 'Integer',
-                            isReq: 'Y',
-                            desc: '4:新增单 12：退保订单'
-                        },
-                        {
-                            key: 'productNo',
-                            name: '产品编码',
-                            type: 'String',
-                            isReq: 'Y',
-                            desc: ''
-                        },
-                        {
-                            key: 'name',
-                            name: '姓名',
-                            type: 'String',
-                            isReq: 'Y',
-                            desc: ''
-                        },
-                        {
-                            key: 'mobile',
-                            name: '手机号',
-                            type: 'String',
-                            isReq: 'N',
-                            desc: ''
-                        },
-                        {
-                            key: 'idType',
-                            name: '证件类型',
-                            type: 'Integer',
-                            isReq: 'Y',
-                            desc: '见附录'
-                        },
-                        {
-                            key: 'idCode',
-                            name: '证件号码',
-                            type: 'String',
-                            isReq: 'Y',
-                            desc: ''
-                        },
-                        defaults_key.effectTime,
-                        defaults_key.invalidTime,
-                        {
-                            key: 'surrenderTime',
-                            name: '保单退保时间',
-                            type: 'String',
-                            isReq: 'N',
-                            desc: 'status为4时该字段为空。yyyy-MM-dd HH:mm:ss'
-                        }
-                    ]
+                    desc: '见附录'
+                },
+                {
+                    key: 'idCode',
+                    name: '证件号码',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                defaults_key.effectTime,
+                defaults_key.invalidTime,
+                {
+                    key: 'surrenderTime',
+                    name: '保单退保时间',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: 'status为4时该字段为空。yyyy-MM-dd HH:mm:ss'
                 }
             ]
         }
