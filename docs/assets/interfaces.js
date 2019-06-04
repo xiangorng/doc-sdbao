@@ -270,7 +270,7 @@ const defaults_key = {
         name: '职业',
         type: 'String',
         isReq: 'N',
-        desc: '1：电销共建；4：网电共建'
+        desc: ''
     },
     annualEarnings: {
         key: 'annualEarnings',
@@ -447,7 +447,7 @@ const defaults_key = {
         name: '职业',
         type: 'String',
         isReq: 'N',
-        desc: '1：电销共建；4：网电共建'
+        desc: ''
       },
       {
         key: 'annualEarnings',
