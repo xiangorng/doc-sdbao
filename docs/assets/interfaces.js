@@ -270,7 +270,7 @@ const defaults_key = {
         name: '职业',
         type: 'String',
         isReq: 'N',
-        desc: '1：电销共建；4：网电共建'
+        desc: ''
     },
     annualEarnings: {
         key: 'annualEarnings',
@@ -281,7 +281,7 @@ const defaults_key = {
     },
   payTime: {
     key: 'payTime',
-    name: '电子保单Url',
+    name: '支付时间',
     type: 'String',
     isReq: 'Y',
     desc: 'yyyy-MM-dd HH:mm:ss'
@@ -447,7 +447,7 @@ const defaults_key = {
         name: '职业',
         type: 'String',
         isReq: 'N',
-        desc: '1：电销共建；4：网电共建'
+        desc: ''
       },
       {
         key: 'annualEarnings',
@@ -556,7 +556,6 @@ const interfaces = {
               children: [
                 defaults_key.supplierProductNo,
                 defaults_key.applyNum,
-                defaults_key.premium,
                 {
                   key: 'firstPremium',
                   name: '首期保费',
@@ -573,7 +572,6 @@ const interfaces = {
             defaults_key.protectPeriodType,
             defaults_key.protectPeriodValue,
             defaults_key.firstPeriodPremium,
-            defaults_key.totalPremium,
             defaults_key.totalAmount,
             defaults_key.payPeriodType,
             defaults_key.payPeriodValue,
@@ -742,7 +740,7 @@ const interfaces = {
           },
           {
               key: 'bankCardNo',
-              name: '支付时使用银行卡的银行名称',
+              name: '支付时使用银行卡的卡号',
               type: 'String',
               isReq: 'N',
               desc: '保险公司需要该信息时需提前与水滴产品经理确认'
