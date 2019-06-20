@@ -1402,35 +1402,117 @@ const interfaces = {
         defaults_key.errorCode,
         defaults_key.errorMsg
     ],
-    实际退款同步请求: [
+    电子保单查询请求: [
         defaults_key.supplierNo,
         {
             key: 'body',
             name: '请求信息的主体',
-            type: 'RefundActRequestBody',
+            type: 'QueryPolicyRequestBody',
             isReq: 'Y',
             desc: '',
             children: [
                 defaults_key.orderNo,
                 defaults_key.policyNo,
+            ]
+        }
+    ],
+    电子保单查询返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'QueryPolicyResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                defaults_key.policyUrl
+            ]
+        }
+    ],
+    预核保接口请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'PreProposalRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
                 {
-                    key: 'refundActTime',
-                    name: '实际退款时间',
-                    type: 'String',
+                    key: 'insuredUsers',
+                    name: '被保人信息',
+                    type: 'List<UserInfo>',
+                    isReq: 'N',
+                    desc: '',
+                    children: defaults_key.UserInfo.concat([
+                        defaults_key.relType,
+                        defaults_key.hasSocial,
+                        {
+                            key: 'hospitalName',
+                            name: '医院名称',
+                            type: 'String',
+                            isReq: 'N',
+                            desc: '手术意外专用'
+                        },
+                        {
+                            key: 'operationName',
+                            name: '手术名称',
+                            type: 'String',
+                            isReq: 'N',
+                            desc: '手术意外专用'
+                        }
+                    ])
+                },
+            ]
+        }
+    ],
+    预核保接口返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'PreProposalResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                {
+                    key: 'preProposalResult',
+                    name: '预核保结果',
+                    type: 'Boolean',
                     isReq: 'Y',
-                    desc: 'yyyy-MM-dd HH:mm:ss'
+                    desc: '预核保的结果'
                 },
                 {
-                    key: 'refundActPremium',
-                    name: '实际退款金额',
-                    type: 'Long',
+                    key: 'preProposalResultMsg',
+                    name: '预核保结果的描述',
+                    type: 'String',
                     isReq: 'Y',
-                    desc: ''
+                    desc: '预核保的结果描述'
                 }
             ]
         }
     ],
-    实际退款同步返回: [
+    出单同步接口请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'OrderTransferRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo
+            ]
+        }
+    ],
+    出单同步接口返回: [
         defaults_key.supplierNo,
         defaults_key.code,
         defaults_key.errorCode,
