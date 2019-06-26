@@ -552,7 +552,7 @@ const interfaces = {
               name: '险种信息',
               type: 'List<OrderMain>',
               isReq: 'N',
-              desc: '非附加险产品时为空',
+              desc: '1、当责任保额都固定时，为空；2当存在可选的险种/责任时，传该信息',
               children: [
                 defaults_key.supplierProductNo,
                 defaults_key.applyNum,
