@@ -549,7 +549,7 @@ const interfaces = {
             },
             {
               key: 'orderMains',
-              name: '附加险信息',
+              name: '险种信息',
               type: 'List<OrderMain>',
               isReq: 'N',
               desc: '非附加险产品时为空',
