@@ -1517,5 +1517,51 @@ const interfaces = {
         defaults_key.code,
         defaults_key.errorCode,
         defaults_key.errorMsg
+    ],
+    订单查询接口请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'QueryOrderRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.proposalNo,
+            ]
+        }
+    ],
+    订单查询接口返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'QueryOrderResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.proposalNo,
+                {
+                    key: 'orderStatus',
+                    name: '订单状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '1.已支付；3：已承保；12：已退保；6：已失效；0：可支付(线下核保专用，非线下核保切勿同步次状态)；'
+                },
+                {
+                    key: 'policyNo',
+                    name: '保单号',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '已承保状态时必传'
+                },
+                defaults_key.policyUrl
+            ]
+        }
     ]
 }
