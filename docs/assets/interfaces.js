@@ -1039,14 +1039,14 @@ const interfaces = {
                     type: 'Integer',
                     isReq: 'Y',
                     desc: '0 成功  1失败 保险公司需要根据这个状态进行相关处理，并对保单进行解锁处理'
-                },
-                {
-                    key: 'paymentMessage',
-                    name: '扣费失败原因',
-                    type: 'String',
-                    isReq: 'N',
-                    desc: '当PayMentStatus是1 的时候给出具体扣费失败原因，主要包括用户卡余额不足，用户签约信息异常等'
                 }
+                // {
+                //     key: 'paymentMessage',
+                //     name: '扣费失败原因',
+                //     type: 'String',
+                //     isReq: 'N',
+                //     desc: '当PayMentStatus是1 的时候给出具体扣费失败原因，主要包括用户卡余额不足，用户签约信息异常等'
+                // }
             ]
         }
     ],
