@@ -67,36 +67,7 @@
   </head>
   <body>
     <div id="app">loading...</div>
-    <script>
-      window.$docsify = {
-        loadSidebar: true,
-        loadNavbar: true,
-        maxLevel: 3,
-        subMaxLevel: 2,
-        logo: './assets/favicon.ico',
-        auto2top: true,
-        name: '水滴保,保你省',
-        search: {
-          placeholder: 'Type to search',
-          noData: 'No Results!',
-          paths: 'auto',
-          depth: 2,
-          maxAge: 86400000, // 1 day
-          hideOtherSidebarContent: false
-        },
-        plugins: [
-          function(hook, vm) {
-            hook.beforeEach(function(html) {
-              return (
-                html +
-                `\n\n----\n\n` +
-                '联系: <a href="mailto:tianxiaoyan@shuidihuzhu.com;renchenggong@shuidihuzhu.com;xuyangtao@shuidihuzhu.com">邮件联系</a> <a href="https://github.com/ShuiDi-Inc/doc.sdbao/issues">在线提交问题</a>'
-              )
-            })
-          }
-        ]
-      }
-    </script>
+    <script src="./assets/app.js"></script>
     <script src="//unpkg.com/vue/dist/vue.min.js"></script>
     <script src="./assets/plugins.js"></script>
     <script src="./assets/interfaces.js"></script>
