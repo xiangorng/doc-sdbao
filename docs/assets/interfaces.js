@@ -814,14 +814,7 @@ const interfaces = {
       children: [
         defaults_key.orderNo,
         defaults_key.policyNo,
-        defaults_key.refundTime,
-          {
-              key: 'isCheck',
-              name: '该退保请求需要人工审核，异步通知结果',
-              type: 'Boolean',
-              isReq: 'N',
-              desc: ''
-          }
+        defaults_key.refundTime
       ]
     }
   ],
@@ -892,17 +885,17 @@ const interfaces = {
         },
           {
               key: 'checkResult',
-              name: '退保人工审核后的结果',
+              name: '审核及退保结果',
               type: 'Boolean',
               isReq: 'N',
-              desc: '审核通过为true，不通过为false'
+              desc: '审核通过并退保成功为true，审核不通过为false'
           },
           {
               key: 'checkResultStr',
               name: '退保人工审核未通过的原因描述',
               type: 'String',
               isReq: 'N',
-              desc: ''
+              desc: '审核不通过时该字段必传'
           }
       ]
     }
