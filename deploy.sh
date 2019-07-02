@@ -19,11 +19,10 @@ if [ $cmd = "dev" ]
 then
   clearImage
   docker build -t $imageNAME .
-  docker run --name $imageNAME -p 3000:3000 -p 35729:35729 -v $curPATH/docs:/usr/src/app/docs -d $imageNAME
+  docker run --name $imageNAME -p 3000:3000 -p 35729:35729 -v $curPATH/docs:/usr/src/app/docs -d --rm $imageNAME
 fi
 
 if [ $cmd = "stop" ]
 then
   docker stop $imageNAME
-  clearImage
 fi
