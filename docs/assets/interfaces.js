@@ -789,7 +789,14 @@ const interfaces = {
         defaults_key.refundEffectTime,
         defaults_key.refundType,
         defaults_key.refundMoneyType,
-          defaults_key.refundActPremium
+        defaults_key.refundActPremium,
+        {
+            key: 'checkPictureUrl',
+            name: '审核图片的链接',
+            type: 'List<String>',
+            isReq: 'N',
+            desc: '退保时用户上传的供保司审核用的身份证图片的链接'
+        }
       ]
     }
   ],
@@ -807,7 +814,14 @@ const interfaces = {
       children: [
         defaults_key.orderNo,
         defaults_key.policyNo,
-        defaults_key.refundTime
+        defaults_key.refundTime,
+          {
+              key: 'isCheck',
+              name: '该退保请求需要人工审核，异步通知结果',
+              type: 'Boolean',
+              isReq: 'N',
+              desc: ''
+          }
       ]
     }
   ],
@@ -875,7 +889,21 @@ const interfaces = {
           type: 'String',
           isReq: 'Y',
           desc: ''
-        }
+        },
+          {
+              key: 'checkResult',
+              name: '退保人工审核后的结果',
+              type: 'Boolean',
+              isReq: 'N',
+              desc: '审核通过为true，不通过为false'
+          },
+          {
+              key: 'checkResultStr',
+              name: '退保人工审核未通过的原因描述',
+              type: 'String',
+              isReq: 'N',
+              desc: ''
+          }
       ]
     }
   ],
