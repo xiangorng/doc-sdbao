@@ -56,7 +56,7 @@ const defaults_key = {
   },
   supplierProductNo: {
     key: 'supplierProductNo',
-    name: '附加险编号',
+    name: '险种编码',
     type: 'String',
     isReq: 'Y',
     desc: ''
@@ -686,7 +686,6 @@ const interfaces = {
       desc: '成功时必传',
       children: [
         defaults_key.orderNo,
-        defaults_key.totalPremium,
         defaults_key.proposalNo,
         defaults_key.proposalTime,
           {
