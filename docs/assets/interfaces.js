@@ -31,7 +31,7 @@ const defaults_key = {
     name: '本次请求执行的状态',
     type: 'Integer',
     isReq: 'Y',
-    desc: '成功：0；失败：1（失败时errorMsg和errorCode必传）'
+    desc: '成功：0；失败：1（失败时errorMsg和errorCode必传）；详细错误编码见附录'
   },
   errorCode: {
     key: 'errorCode',
