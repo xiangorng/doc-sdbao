@@ -342,6 +342,13 @@ const defaults_key = {
     isReq: 'Y',
     desc: ''
   },
+  policyType: {
+	key: 'policyType',
+	name: '保单类型',
+	type: 'Integer',
+	isReq: 'N',
+	desc: '1: 电子保单、2: 纸质保单 默认电子保单'
+  },
   policyTime: {
     key: 'policyTime',
     name: '保险公司出单时间',
@@ -485,6 +492,20 @@ const defaults_key = {
       desc: ''
     },
     {
+	  key: 'bankCardType',
+	  name: '银行卡类型',
+	  type: 'Integer',
+	  isReq: 'N',
+	  desc: '1: 储蓄卡、2: 信用卡'
+    },
+	{
+	  key: 'bankCardValidDay',
+	  name: '信用卡有效期',
+	  type: 'String',
+	  isReq: 'N',
+	  desc: '格式:YYYY-MM-DD'
+	},
+    {
       key: 'province',
       name: '省',
       type: 'String',
@@ -540,6 +561,7 @@ const interfaces = {
           desc: '',
           children: [
             defaults_key.orderNo,
+	        defaults_key.policyType,
             {
               key: 'productNo',
               name: '水滴产品编码',
