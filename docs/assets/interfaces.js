@@ -658,6 +658,13 @@ const interfaces = {
                     desc: ''
                 },
                     {
+                        key: 'diseaseId',
+                        name: '疾病编码',
+                        type: 'String',
+                        isReq: 'N',
+                        desc: ''
+                    },
+                    {
                         key: 'question',
                         name: '问题',
                         type: 'String',
@@ -665,10 +672,24 @@ const interfaces = {
                         desc: ''
                     },
                     {
+                        key: 'questionId',
+                        name: '问题编码',
+                        type: 'String',
+                        isReq: 'N',
+                        desc: ''
+                    },
+                    {
                         key: 'answer',
                         name: '答案',
                         type: 'String',
                         isReq: 'Y',
+                        desc: ''
+                    },
+                    {
+                        key: 'answerId',
+                        name: '答案编码',
+                        type: 'String',
+                        isReq: 'N',
                         desc: ''
                     },
                     {
