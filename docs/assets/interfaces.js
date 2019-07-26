@@ -1626,5 +1626,65 @@ const interfaces = {
                 defaults_key.policyUrl
             ]
         }
+    ],
+    批改接口请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'ModifyOrderRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'modifyStatus',
+                    name: '批改类型',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '1.提高保额'
+                },
+                {
+                    key: 'addMount',
+                    name: '需要增加的保额',
+                    type: 'Long',
+                    isReq: 'N',
+                    desc: 'modifyStatus为1时必填'
+                },
+                {
+                    key: 'addPremium',
+                    name: '增加的保费',
+                    type: 'Long',
+                    isReq: 'N',
+                    desc: 'modifyStatus为1时必填'
+                }
+
+            ]
+        }
+    ],
+    批改接口返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'ModifyOrderResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'amount',
+                    name: '此订单目前的保额',
+                    type: 'Long',
+                    isReq: 'N',
+                    desc: '提高保额时必传'
+                }
+            ]
+        }
     ]
 }
