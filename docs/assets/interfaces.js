@@ -1646,15 +1646,15 @@ const interfaces = {
                     desc: '1.提高保额'
                 },
                 {
-                    key: 'addMount',
-                    name: '需要增加的保额',
+                    key: 'mount',
+                    name: '批改后的保额',
                     type: 'Long',
                     isReq: 'N',
                     desc: 'modifyStatus为1时必填'
                 },
                 {
-                    key: 'addPremium',
-                    name: '增加的保费',
+                    key: 'premium',
+                    name: '批改后的保费',
                     type: 'Long',
                     isReq: 'N',
                     desc: 'modifyStatus为1时必填'
