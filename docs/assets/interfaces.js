@@ -1643,7 +1643,7 @@ const interfaces = {
                     name: '批改流水号',
                     type: 'String',
                     isReq: 'Y',
-                    desc: '一次批改时唯一，如果重复则表示是在重试'
+                    desc: '一个流水号代表一次批改操作，如果重复则表示是在重试'
                 },
                 {
                     key: 'modifyStatus',
@@ -1651,10 +1651,26 @@ const interfaces = {
                     type: 'Integer',
                     isReq: 'Y',
                     desc: '1.追加保额'
+                }
+                ,
+                {
+                    key: 'addMount',
+                    name: '追加的保额',
+                    type: 'Long',
+                    isReq: 'N',
+                    desc: 'modifyStatus为1时必填'
                 },
                 {
                     key: 'mount',
                     name: '批改后的保额',
+                    type: 'Long',
+                    isReq: 'N',
+                    desc: 'modifyStatus为1时必填'
+                }
+                ,
+                {
+                    key: 'addPremium',
+                    name: '追加的保费',
                     type: 'Long',
                     isReq: 'N',
                     desc: 'modifyStatus为1时必填'
@@ -1685,11 +1701,25 @@ const interfaces = {
                 defaults_key.orderNo,
                 defaults_key.policyNo,
                 {
+                    key: 'modifyNo',
+                    name: '批改流水号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: '一个流水号代表一次批改操作，如果重复则表示是在重试'
+                },
+                {
                     key: 'amount',
                     name: '此订单目前的保额',
                     type: 'Long',
                     isReq: 'N',
-                    desc: '提高保额时必传'
+                    desc: '追加保额时必传'
+                },
+                {
+                    key: 'premium',
+                    name: '此订单目前的保费',
+                    type: 'Long',
+                    isReq: 'N',
+                    desc: '追加保额时必传'
                 }
             ]
         }
