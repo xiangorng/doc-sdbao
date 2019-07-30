@@ -1639,11 +1639,18 @@ const interfaces = {
                 defaults_key.orderNo,
                 defaults_key.policyNo,
                 {
+                    key: 'modifyNo',
+                    name: '批改流水号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: '一次批改时唯一，如果重复则表示是在重试'
+                },
+                {
                     key: 'modifyStatus',
                     name: '批改类型',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '1.提高保额'
+                    desc: '1.追加保额'
                 },
                 {
                     key: 'mount',
