@@ -654,7 +654,7 @@ const interfaces = {
                     key: 'diseaseName',
                     name: '疾病名称',
                     type: 'String',
-                    isReq: 'Y',
+                    isReq: 'N',
                     desc: ''
                 },
                     {
@@ -668,7 +668,7 @@ const interfaces = {
                         key: 'question',
                         name: '问题',
                         type: 'String',
-                        isReq: 'Y',
+                        isReq: 'N',
                         desc: ''
                     },
                     {
@@ -682,7 +682,7 @@ const interfaces = {
                         key: 'answer',
                         name: '答案',
                         type: 'String',
-                        isReq: 'Y',
+                        isReq: 'N',
                         desc: ''
                     },
                     {
@@ -696,7 +696,7 @@ const interfaces = {
                         key: 'level',
                         name: '问题层级',
                         type: 'Integer',
-                        isReq: 'Y',
+                        isReq: 'N',
                         desc: ''
                     }]
             },
