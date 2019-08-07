@@ -1723,5 +1723,123 @@ const interfaces = {
                 }
             ]
         }
+    ],
+    回访接口请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'ReturnVisitRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'visitType',
+                    name: '回访类型',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '在线回访/电话回访/其他类型回访(具体值待定)'
+                },
+                {
+                    key: 'visitDay',
+                    name: '回访日期',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd'
+                }
+                ,
+                {
+                    key: 'visitTime',
+                    name: '回访时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'visitStatus',
+                    name: '回访状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '回访状态code，我方定义枚举类型 待定'
+                }
+
+            ]
+        }
+    ],
+    回访接口返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg
+    ],
+    回访通知接口请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'VisitNoticeRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'visitType',
+                    name: '回访类型',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '在线回访/电话回访/其他类型回访(具体值待定)'
+                },
+                {
+                    key: 'visitDay',
+                    name: '回访日期',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd'
+                }
+                ,
+                {
+                    key: 'visitTime',
+                    name: '回访时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'visitStatus',
+                    name: '回访状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '回访状态code，我方定义枚举类型 待定'
+                },
+                {
+                    key: 'failMsg',
+                    name: '回访失败原因',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: ''
+                }
+
+            ]
+        }
+    ],
+    回访通知接口返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'VisitNoticeResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo
+            ]
+        }
     ]
 }
