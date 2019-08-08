@@ -1654,14 +1654,14 @@ const interfaces = {
                 }
                 ,
                 {
-                    key: 'addMount',
+                    key: 'addAmount',
                     name: '追加的保额',
                     type: 'Long',
                     isReq: 'N',
                     desc: 'modifyStatus为1时必填'
                 },
                 {
-                    key: 'mount',
+                    key: 'amount',
                     name: '批改后的保额',
                     type: 'Long',
                     isReq: 'N',
