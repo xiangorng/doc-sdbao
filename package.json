@@ -1,8 +1,7 @@
 {
-  "name": "doc.sdbao",
+  "name": "doc-sdbao",
   "version": "1.0.0",
-  "description": "```bash npm install -g docsify docsify serve docs ```",
-  "main": "index.js",
+  "description": "https://www.sdbao.com",
   "directories": {
     "doc": "docs"
   },
@@ -16,9 +15,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ShuiDi-Inc/doc.sdbao/issues"
+    "url": "https://github.com/ShuiDi-Inc/doc-sdbao/issues"
   },
-  "homepage": "https://github.com/ShuiDi-Inc/doc.sdbao#readme",
+  "homepage": "https://github.com/ShuiDi-Inc/doc-sdbao#readme",
   "dependencies": {
     "docsify-cli": "^4.3.0"
   }
