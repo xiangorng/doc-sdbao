@@ -1812,7 +1812,7 @@ const interfaces = {
                     name: '回访状态',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '1.在线回访成功;3.在线回访失败;4.保司电话回访成功;5.保司电话回访失败'
+                    desc: '4.保司电话回访成功;5.保司电话回访中'
                 },
                 {
                     key: 'failMsg',
