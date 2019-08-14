@@ -1740,7 +1740,7 @@ const interfaces = {
                     name: '回访类型',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '在线回访/电话回访/其他类型回访(具体值待定)'
+                    desc: '1.在线回访;2.电话回访'
                 },
                 {
                     key: 'visitDay',
@@ -1762,7 +1762,7 @@ const interfaces = {
                     name: '回访状态',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '回访状态code，我方定义枚举类型 待定'
+                    desc: '1.在线回访成功;3.在线回访失败'
                 }
 
             ]
@@ -1790,7 +1790,7 @@ const interfaces = {
                     name: '回访类型',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '在线回访/电话回访/其他类型回访(具体值待定)'
+                    desc: '1.在线回访;2.电话回访'
                 },
                 {
                     key: 'visitDay',
@@ -1812,7 +1812,7 @@ const interfaces = {
                     name: '回访状态',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '回访状态code，我方定义枚举类型 待定'
+                    desc: '1.在线回访成功;3.在线回访失败;4.保司电话回访成功;5.保司电话回访失败'
                 },
                 {
                     key: 'failMsg',
