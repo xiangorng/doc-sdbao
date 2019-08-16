@@ -1790,7 +1790,7 @@ const interfaces = {
                     name: '回访类型',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '1.在线回访;2.电话回访'
+                    desc: '1.在线回访;2.电话回访;0.其他回访类型'
                 },
                 {
                     key: 'visitDay',
