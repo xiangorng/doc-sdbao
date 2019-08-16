@@ -767,6 +767,13 @@ const interfaces = {
         defaults_key.proposalNo,
         defaults_key.payTime,
           {
+              key: 'payType',
+              name: '支付方式',
+              type: 'Integer',
+              isReq: 'Y',
+              desc: '0.银行卡;1.微信支付'
+          },
+          {
               key: 'bankCode',
               name: '支付时使用银行卡的银行编码',
               type: 'String',
