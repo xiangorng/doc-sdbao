@@ -577,7 +577,7 @@ const interfaces = {
               desc: '1、当责任保额都固定时，为空；2当存在可选的险种/责任时，传该信息',
               children: [
                 defaults_key.supplierProductNo,
-                defaults_key.applyNum,
+                // defaults_key.applyNum,
                 {
                   key: 'firstPremium',
                   name: '首期保费',
