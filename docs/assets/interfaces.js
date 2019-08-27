@@ -1329,11 +1329,18 @@ const interfaces = {
                 defaults_key.orderNo,
                 defaults_key.policyNo,
                 {
+                    key: 'premium',
+                    name: '实缴保费、当期保费',
+                    type: 'Long',
+                    isReq: 'N',
+                    desc: '单位为分'
+                },
+                {
                     key: 'status',
                     name: '订单状态',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '4:新增单 12：退保订单'
+                    desc: '4:新增单 12：退保订单 41:续费单'
                 },
                 {
                     key: 'productNo',
@@ -1400,6 +1407,13 @@ const interfaces = {
                     type: 'String',
                     isReq: 'Y',
                     desc: '水滴保存的合作方名称'
+                },
+                {
+                    key: 'exchangeCode',
+                    name: '兑换码',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: ''
                 }
             ]
         }
