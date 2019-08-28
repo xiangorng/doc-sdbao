@@ -800,6 +800,13 @@ const interfaces = {
               type: 'String',
               isReq: 'N',
               desc: '保险公司需要该信息时需提前与水滴产品经理确认'
+          },
+          {
+              key: 'payAccount',
+              name: '支付账户',
+              type: 'String',
+              isReq: 'N',
+              desc: '保险公司需要该信息时需提前与水滴产品经理确认,非银行卡支付时使用'
           }
       ]
     }
@@ -1151,7 +1158,7 @@ const interfaces = {
         {
             key: 'body',
             name: '请求信息的主体',
-            type: 'UpgradeOrderRequestBody',
+            type: 'RefundCalRequestBody',
             isReq: 'Y',
             desc: '',
             children: [
@@ -1170,7 +1177,7 @@ const interfaces = {
         {
             key: 'body',
             name: '请求信息的主体',
-            type: 'UpgradeOrderResultBody',
+            type: 'RefundCalResultBody',
             isReq: 'N',
             desc: '成功时必传',
             children: [
