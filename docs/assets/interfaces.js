@@ -712,7 +712,49 @@ const interfaces = {
                     isReq: 'N',
                     desc: 'resultType为2时，此字段不能为空，为不包括在保险内的疾病名称，以英文逗号分隔'
                 }]
-        }
+        },
+          {
+              key: 'petInfo',
+              name: '宠物信息',
+              type: 'PetInfo',
+              isReq: 'N',
+              desc: '',
+              children: [{
+                  key: 'petBreed',
+                  name: '品种',
+                  type: 'Integer',
+                  isReq: 'Y',
+                  desc: '1、猫；2、狗'
+              },
+              {
+                  key: 'petAge',
+                  name: '年龄区间',
+                  type: 'Integer',
+                  isReq: 'Y',
+                  desc: '1、90天-2周岁；2、3-5周岁；3、6-8周岁'
+              },
+              {
+                  key: 'petSex',
+                  name: '性别',
+                  type: 'Integer',
+                  isReq: 'Y',
+                  desc: '1、公；2、母'
+              },
+              {
+                  key: 'petSterilization',
+                  name: '节育',
+                  type: 'Integer',
+                  isReq: 'Y',
+                  desc: '1、已节育；2、未节育'
+              },
+              {
+                  key: 'petPhoto',
+                  name: '照片',
+                  type: 'List<String>',
+                  isReq: 'Y',
+                  desc: ''
+              }]
+          }
       ]
     }
   ],
