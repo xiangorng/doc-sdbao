@@ -974,6 +974,13 @@ const interfaces = {
               isReq: 'N',
               desc: '默认为false，对接前双方业务约定'
           },
+          {
+              key: 'inHesitate',
+              name: '是否在犹豫期内',
+              type: 'Boolean',
+              isReq: 'N',
+              desc: '一般不需要该字段'
+          },
         {
           key: 'reason',
           name: '退款的原因',
