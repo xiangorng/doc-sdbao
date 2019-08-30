@@ -976,10 +976,10 @@ const interfaces = {
           },
           {
               key: 'inHesitate',
-              name: '是否在犹豫期内',
-              type: 'Boolean',
+              name: '犹豫期类型',
+              type: 'Integer',
               isReq: 'N',
-              desc: '一般不需要该字段'
+              desc: '1、犹豫期内；2、犹豫期外普通退款；3、犹豫期外的协议退款'
           },
         {
           key: 'reason',
