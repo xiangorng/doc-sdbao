@@ -610,6 +610,7 @@ const interfaces = {
               defaults_key.familyBasePolicy,
               defaults_key.productChannel,
               defaults_key.saleNo,
+              defaults_key.saleManage
           ]
         },
         {
