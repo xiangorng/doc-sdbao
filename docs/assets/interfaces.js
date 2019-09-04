@@ -237,6 +237,13 @@ const defaults_key = {
         isReq: 'N',
         desc: ''
     },
+    saleManage: {
+        key: 'saleManage',
+        name: '销售人机构代码',
+        type: 'String',
+        isReq: 'N',
+        desc: ''
+    },
     idValidType: {
         key: 'idValidType',
         name: '证件有效期类型',
