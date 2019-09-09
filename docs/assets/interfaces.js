@@ -1407,13 +1407,6 @@ const interfaces = {
                     desc: '4:新增单 12：退保订单 41:续费单'
                 },
                 {
-                    key: 'periodNum',
-                    name: '本次期数',
-                    type: 'Integer',
-                    isReq: 'N',
-                    desc: 'status等于41时有该字段'
-                },
-                {
                     key: 'productNo',
                     name: '产品编码',
                     type: 'String',
