@@ -768,7 +768,13 @@ const interfaces = {
   ],
   核保返回: [
     defaults_key.supplierNo,
-    defaults_key.code,
+      {
+        key: 'code',
+        name: '本次请求执行的状态',
+        type: 'Integer',
+        isReq: 'Y',
+        desc: '成功：0；失败：1（失败时errorMsg和errorCode必传）；转人核：2；详细错误编码见附录'
+      },
     defaults_key.errorCode,
     defaults_key.errorMsg,
     {
@@ -1199,14 +1205,7 @@ const interfaces = {
                 defaults_key.orderNo,
                 defaults_key.policyNo,
                 defaults_key.periodNum,
-                defaults_key.periodOrderNo,
-                {
-                    key: 'status',
-                    name: '保险公司处理续期记录额',
-                    type: 'Integer',
-                    isReq: 'Y',
-                    desc: '0 成功  1失败 水滴公司根据这个状态进行重试等相关处理'
-                }
+                defaults_key.periodOrderNo
             ]
         }
     ],
@@ -1498,7 +1497,7 @@ const interfaces = {
                     name: '订单状态',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '1.已支付；3：已承保；12：已退保；6：已失效；0：可支付(线下核保专用，非线下核保切勿同步次状态)；'
+                    desc: '1.已支付；3：已承保；12：已退保；6：保单失效；0：人核通过可支付；-6：人核失败关闭订单(1和-6为人工核保专用)'
                 },
                 {
                     key: 'needSave',
