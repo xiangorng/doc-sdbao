@@ -539,6 +539,13 @@ const defaults_key = {
       type: 'String',
       isReq: 'N',
       desc: ''
+    },
+    {
+      key: 'maritalStatus',
+      name: '婚姻状况',
+      type: 'Integer',
+      isReq: 'N',
+      desc: '0：未婚 1：已婚'
     }
   ],
     periodOrderNo: {
@@ -729,7 +736,7 @@ const interfaces = {
               desc: '',
               children: [{
                   key: 'petBreed',
-                  name: '品种',
+                  name: '宠物类型',
                   type: 'Integer',
                   isReq: 'Y',
                   desc: '1、猫；2、狗'
@@ -1205,7 +1212,14 @@ const interfaces = {
                 defaults_key.orderNo,
                 defaults_key.policyNo,
                 defaults_key.periodNum,
-                defaults_key.periodOrderNo
+                defaults_key.periodOrderNo,
+                {
+                    key: 'status',
+                    name: '保险公司处理续期记录额',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '0 成功  1失败 保单解锁结果'
+                }
             ]
         }
     ],
