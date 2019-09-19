@@ -979,7 +979,14 @@ const interfaces = {
                 defaults_key.orderNo,
                 defaults_key.policyNo,
                 defaults_key.periodNum,
-                defaults_key.periodOrderNo
+                defaults_key.periodOrderNo,
+                {
+                    key: 'prePayDay',
+                    name: '预计扣费日期',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd'
+                }
             ]
         }
     ],
