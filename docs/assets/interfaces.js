@@ -1117,6 +1117,13 @@ const interfaces = {
                     isReq: 'Y',
                     desc: '0 成功  1失败 保险公司需要根据这个状态进行相关处理，并对保单进行解锁处理'
                 }
+                {
+                    key: 'prePayDay',
+                    name: '预计扣费日期',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd'
+                }
                 // {
                 //     key: 'paymentMessage',
                 //     name: '扣费失败原因',
