@@ -735,7 +735,7 @@ const interfaces = {
               isReq: 'N',
               desc: '',
               children: [{
-                  key: 'petBreed',
+                  key: 'petType',
                   name: '宠物类型',
                   type: 'Integer',
                   isReq: 'Y',
@@ -753,7 +753,7 @@ const interfaces = {
                   name: '性别',
                   type: 'Integer',
                   isReq: 'Y',
-                  desc: '1、公；2、母'
+                  desc: '1、母；2、公'
               },
               {
                   key: 'petSterilization',
@@ -1193,7 +1193,7 @@ const interfaces = {
                     type: 'Integer',
                     isReq: 'Y',
                     desc: '0 成功  1失败 保险公司需要根据这个状态进行相关处理，并对保单进行解锁处理'
-                }
+                },
                 {
                     key: 'prePayDay',
                     name: '预计扣费日期',
