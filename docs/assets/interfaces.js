@@ -237,6 +237,13 @@ const defaults_key = {
         isReq: 'N',
         desc: ''
     },
+    saleManage: {
+        key: 'saleManage',
+        name: '销售人机构代码',
+        type: 'String',
+        isReq: 'N',
+        desc: ''
+    },
     idValidType: {
         key: 'idValidType',
         name: '证件有效期类型',
@@ -532,6 +539,13 @@ const defaults_key = {
       type: 'String',
       isReq: 'N',
       desc: ''
+    },
+    {
+      key: 'maritalStatus',
+      name: '婚姻状况',
+      type: 'Integer',
+      isReq: 'N',
+      desc: '0：未婚 1：已婚'
     }
   ],
     periodOrderNo: {
@@ -603,6 +617,7 @@ const interfaces = {
               defaults_key.familyBasePolicy,
               defaults_key.productChannel,
               defaults_key.saleNo,
+              defaults_key.saleManage
           ]
         },
         {
@@ -712,13 +727,61 @@ const interfaces = {
                     isReq: 'N',
                     desc: 'resultType为2时，此字段不能为空，为不包括在保险内的疾病名称，以英文逗号分隔'
                 }]
-        }
+        },
+          {
+              key: 'petInfo',
+              name: '宠物信息',
+              type: 'PetInfo',
+              isReq: 'N',
+              desc: '',
+              children: [{
+                  key: 'petBreed',
+                  name: '宠物类型',
+                  type: 'Integer',
+                  isReq: 'Y',
+                  desc: '1、猫；2、狗'
+              },
+              {
+                  key: 'petAge',
+                  name: '年龄区间',
+                  type: 'Integer',
+                  isReq: 'Y',
+                  desc: '1、90天-2周岁；2、3-5周岁；3、6-8周岁'
+              },
+              {
+                  key: 'petSex',
+                  name: '性别',
+                  type: 'Integer',
+                  isReq: 'Y',
+                  desc: '1、公；2、母'
+              },
+              {
+                  key: 'petSterilization',
+                  name: '节育',
+                  type: 'Integer',
+                  isReq: 'Y',
+                  desc: '1、已节育；2、未节育'
+              },
+              {
+                  key: 'petPhoto',
+                  name: '照片',
+                  type: 'List<String>',
+                  isReq: 'Y',
+                  desc: ''
+              }]
+          }
       ]
     }
   ],
   核保返回: [
     defaults_key.supplierNo,
-    defaults_key.code,
+      {
+        key: 'code',
+        name: '本次请求执行的状态',
+        type: 'Integer',
+        isReq: 'Y',
+        desc: '成功：0；失败：1（失败时errorMsg和errorCode必传）；转人核：2；详细错误编码见附录'
+      },
     defaults_key.errorCode,
     defaults_key.errorMsg,
     {
@@ -800,6 +863,13 @@ const interfaces = {
               type: 'String',
               isReq: 'N',
               desc: '保险公司需要该信息时需提前与水滴产品经理确认'
+          },
+          {
+              key: 'payAccount',
+              name: '支付账户',
+              type: 'String',
+              isReq: 'N',
+              desc: '保险公司需要该信息时需提前与水滴产品经理确认,非银行卡支付时使用'
           }
       ]
     }
@@ -924,6 +994,13 @@ const interfaces = {
               type: 'Boolean',
               isReq: 'N',
               desc: '默认为false，对接前双方业务约定'
+          },
+          {
+              key: 'inHesitate',
+              name: '犹豫期类型',
+              type: 'Integer',
+              isReq: 'N',
+              desc: '1、犹豫期内；2、犹豫期外普通退款'
           },
         {
           key: 'reason',
@@ -1155,7 +1232,7 @@ const interfaces = {
                     name: '保险公司处理续期记录额',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '0 成功  1失败 水滴公司根据这个状态进行重试等相关处理'
+                    desc: '0 成功  1失败 保单解锁结果'
                 }
             ]
         }
@@ -1165,7 +1242,7 @@ const interfaces = {
         {
             key: 'body',
             name: '请求信息的主体',
-            type: 'UpgradeOrderRequestBody',
+            type: 'RefundCalRequestBody',
             isReq: 'Y',
             desc: '',
             children: [
@@ -1184,7 +1261,7 @@ const interfaces = {
         {
             key: 'body',
             name: '请求信息的主体',
-            type: 'UpgradeOrderResultBody',
+            type: 'RefundCalResultBody',
             isReq: 'N',
             desc: '成功时必传',
             children: [
@@ -1357,13 +1434,6 @@ const interfaces = {
                     desc: '4:新增单 12：退保订单 41:续费单'
                 },
                 {
-                    key: 'periodNum',
-                    name: '本次期数',
-                    type: 'Integer',
-                    isReq: 'N',
-                    desc: 'status等于41时有该字段'
-                },
-                {
                     key: 'productNo',
                     name: '产品编码',
                     type: 'String',
@@ -1455,7 +1525,7 @@ const interfaces = {
                     name: '订单状态',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '1.已支付；3：已承保；12：已退保；6：已失效；0：可支付(线下核保专用，非线下核保切勿同步次状态)；'
+                    desc: '1.已支付；3：已承保；12：已退保；6：保单失效；0：人核通过可支付；-6：人核失败关闭订单(1和-6为人工核保专用)'
                 },
                 {
                     key: 'needSave',
