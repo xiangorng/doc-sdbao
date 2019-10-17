@@ -391,6 +391,27 @@ const defaults_key = {
     isReq: 'Y',
     desc: '2、3、4'
   },
+  collectPeriodValue:{
+    key: 'collectPeriodValue',
+    name: '领取年限',
+    type: 'Integer',
+    isReq: 'N',
+    desc: '5、10、55、60'
+  },
+  collectPeriodType:{
+    key: 'collectPeriodType',
+    name: '领取年限类型',
+    type: 'Integer',
+    isReq: 'N',
+    desc: '1：年；2：月；3：日；4：年龄；'
+  },
+  collectFrequencyType:{
+    key: 'collectFrequencyType',
+    name: '领取频率',
+    type: 'Integer',
+    isReq: 'N',
+    desc: '1：月领；2：年领；'
+  },
   UserInfo: [
     {
       key: 'name',
@@ -612,12 +633,15 @@ const interfaces = {
             defaults_key.payPeriodType,
             defaults_key.payPeriodValue,
             defaults_key.payFrequency,
-              defaults_key.isRenewPolicy,
-              defaults_key.parentPolicyNo,
-              defaults_key.familyBasePolicy,
-              defaults_key.productChannel,
-              defaults_key.saleNo,
-              defaults_key.saleManage
+            defaults_key.isRenewPolicy,
+            defaults_key.parentPolicyNo,
+            defaults_key.familyBasePolicy,
+            defaults_key.productChannel,
+            defaults_key.saleNo,
+            defaults_key.saleManage,
+            defaults_key.collectPeriodType,
+            defaults_key.collectPeriodValue,
+            defaults_key.collectFrequencyType,
           ]
         },
         {
