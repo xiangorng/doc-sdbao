@@ -629,6 +629,13 @@ const interfaces = {
             defaults_key.protectPeriodType,
             defaults_key.protectPeriodValue,
             defaults_key.firstPeriodPremium,
+              {
+                  key: 'secondPeriodPremium',
+                  name: '期交保费',
+                  type: 'Long',
+                  isReq: 'Y',
+                  desc: '次期开始的每期保费'
+              },
             defaults_key.totalAmount,
             defaults_key.payPeriodType,
             defaults_key.payPeriodValue,
@@ -852,6 +859,14 @@ const interfaces = {
           desc: ''
         },
         defaults_key.proposalNo,
+        defaults_key.firstPeriodPremium,
+          {
+              key: 'secondPeriodPremium',
+              name: '期交保费',
+              type: 'Long',
+              isReq: 'Y',
+              desc: '次期开始的每期保费'
+          },
         defaults_key.payTime,
           {
               key: 'payType',
@@ -1989,6 +2004,53 @@ const interfaces = {
                 defaults_key.orderNo,
                 defaults_key.policyNo
             ]
+        }
+    ],
+    通知扣款请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'PolicyOrderRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                {
+                    key: 'orderNo',
+                    name: '水滴订单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                defaults_key.proposalNo,
+                defaults_key.firstPeriodPremium,
+                {
+                    key: 'secondPeriodPremium',
+                    name: '期交保费',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: '次期开始的每期保费'
+                }
+            ]
+        }
+    ],
+    通知扣款返回: [
+        defaults_key.supplierNo,
+        {
+            key: 'code',
+            name: '本次请求执行的状态',
+            type: 'Integer',
+            isReq: 'Y',
+            desc: '接收成功：0；接收失败：1（失败时errorMsg和errorCode必传）'
+        },
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'PolicyOrderRequestBody',
+            isReq: 'Y',
+            desc: ''
         }
     ]
 }
