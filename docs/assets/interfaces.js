@@ -594,7 +594,7 @@ const interfaces = {
           type: 'OrderInfo',
           isReq: 'Y',
           desc: '',
-          children: [
+          children: [https://github.com/ShuiDi-Inc/doc-sdbao/commit/137ffd604fba0166c0bc8d68fba334604e5b3216
             defaults_key.orderNo,
 	        defaults_key.policyType,
             {
@@ -1606,7 +1606,7 @@ const interfaces = {
         defaults_key.supplierNo,
         {
             key: 'body',
-            name: '返回信息的主体',
+            name: '请求信息的主体',
             type: 'OrderReceiptRequestBody',
             isReq: 'Y',
             desc: '',
