@@ -594,7 +594,7 @@ const interfaces = {
           type: 'OrderInfo',
           isReq: 'Y',
           desc: '',
-          children: [https://github.com/ShuiDi-Inc/doc-sdbao/commit/137ffd604fba0166c0bc8d68fba334604e5b3216
+          children: [
             defaults_key.orderNo,
 	        defaults_key.policyType,
             {
