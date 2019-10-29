@@ -921,7 +921,7 @@ const interfaces = {
     {
       key: 'body',
       name: '请求信息的主体',
-      type: 'PolicyOrderRequestBody',
+      type: 'PolicyOrderResultBody',
       isReq: 'Y',
       desc: '',
       children: [
@@ -2048,9 +2048,214 @@ const interfaces = {
         {
             key: 'body',
             name: '请求信息的主体',
-            type: 'PolicyOrderRequestBody',
+            type: 'PolicyOrderResultBody',
             isReq: 'Y',
             desc: ''
         }
-    ]
+    ],
+    申请福利请求:[
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'WelfareOrderRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                {
+                    key: 'orderNo',
+                    name: '水滴订单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'productNo',
+                    name: '水滴产品编码',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: '水滴保打包后的产品编码，需要合作方自己记录映射关系'
+                },
+                {
+                    key: 'insuranceEffectDate',
+                    name: '保单生效日',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'mobile',
+                    name: '投保人手机号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'idCode',
+                    name: '被保人证件号码',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'name',
+                    name: '被保人姓名',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                }
+            ]
+        }
+    ],
+    申请福利返回: [
+        defaults_key.supplierNo,
+        {
+            key: 'code',
+            name: '本次请求执行的状态',
+            type: 'Integer',
+            isReq: 'Y',
+            desc: '接收成功：0；接收失败：1（失败时errorMsg和errorCode必传）'
+        },
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'WelfareOrderResultBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                {
+                    key: 'orderNo',
+                    name: '水滴订单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'outOrderNo',
+                    name: '体检单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: '合作方唯一编号,与保司一一对应'
+                }
+            ]
+        }
+    ],
+    福利状态通知请求:[
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'WelfareNoticeRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children:[
+                {
+                    key: 'orderNo',
+                    name: '水滴订单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'Status',
+                    name: '体检状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: ' 2:取消预约;3：预约成功; 4：报告已完成; 5：退保无法体检 6:失效无法体检'
+                },
+                {
+                    key: 'phyExamDate',
+                    name: '预约体检日期',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: 'orderStatus为3时必传;yyyy-MM-dd'
+                },
+                {
+                    key: 'phyExamOrderTime',
+                    name: '体检预约完成时间',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: 'orderStatus为3时必传;yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'phyExamResult',
+                    name: '体检结果',
+                    type: 'Integer',
+                    isReq: 'N',
+                    desc: 'orderStatus为4时必传;1:标准体;2:优选体'
+                },
+                {
+                    key: 'phyExamReportUrl',
+                    name: '体验报告Url',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: 'orderStatus为4时必传'
+                },
+                {
+                    key: 'phyExamReportJson',
+                    name: '体检报告json集',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: 'orderStatus为4时必传'
+                }
+            ]
+        }
+    ],
+    福利状态通知返回:[
+        defaults_key.supplierNo,
+        {
+            key: 'code',
+            name: '本次请求执行的状态',
+            type: 'Integer',
+            isReq: 'Y',
+            desc: '接收成功：0；接收失败：1（失败时errorMsg和errorCode必传）'
+        },
+        defaults_key.errorCode,
+        defaults_key.errorMsg
+    ],
+    取消福利接口请求:[
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'CancelWelfareRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children:[
+                {
+                    key: 'orderNo',
+                    name: '水滴订单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'refundEffectTime',
+                    name: '退保生效时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'Status',
+                    name: '状态',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: '1:退保;2:失效'
+                }
+            ],
+            取消福利接口返回:[
+                defaults_key.supplierNo,
+                {
+                    key: 'code',
+                    name: '本次请求执行的状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '接收成功：0；接收失败：1（失败时errorMsg和errorCode必传）'
+                },
+                defaults_key.errorCode,
+                defaults_key.errorMsg
+            ]
 }
