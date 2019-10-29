@@ -319,7 +319,7 @@ const defaults_key = {
     name: '操作类型',
     type: 'Integer',
     isReq: 'Y',
-    desc: '0：有效期内用户发起退保；1：分期产品，超过宽限期未续费自动退保'
+    desc: '0：有效期内用户发起退保(确认退保)；1：分期产品，超过宽限期未续费自动失效；2：退保申请预记录，不需要进行实际退保；3：退保申请撤销，配合2状态使用'
   },
     refundMoneyType: {
         key: 'refundMoneyType',
@@ -390,6 +390,27 @@ const defaults_key = {
     type: 'Integer',
     isReq: 'Y',
     desc: '2、3、4'
+  },
+  collectPeriodValue:{
+    key: 'collectPeriodValue',
+    name: '领取年限',
+    type: 'Integer',
+    isReq: 'N',
+    desc: '5、10、55、60'
+  },
+  collectPeriodType:{
+    key: 'collectPeriodType',
+    name: '领取年限类型',
+    type: 'Integer',
+    isReq: 'N',
+    desc: '1：年；2：月；3：日；4：年龄；'
+  },
+  collectFrequencyType:{
+    key: 'collectFrequencyType',
+    name: '领取频率',
+    type: 'Integer',
+    isReq: 'N',
+    desc: '1：月领；2：年领；'
   },
   UserInfo: [
     {
@@ -608,16 +629,26 @@ const interfaces = {
             defaults_key.protectPeriodType,
             defaults_key.protectPeriodValue,
             defaults_key.firstPeriodPremium,
+              {
+                  key: 'secondPeriodPremium',
+                  name: '期交保费',
+                  type: 'Long',
+                  isReq: 'Y',
+                  desc: '次期开始的每期保费'
+              },
             defaults_key.totalAmount,
             defaults_key.payPeriodType,
             defaults_key.payPeriodValue,
             defaults_key.payFrequency,
-              defaults_key.isRenewPolicy,
-              defaults_key.parentPolicyNo,
-              defaults_key.familyBasePolicy,
-              defaults_key.productChannel,
-              defaults_key.saleNo,
-              defaults_key.saleManage
+            defaults_key.isRenewPolicy,
+            defaults_key.parentPolicyNo,
+            defaults_key.familyBasePolicy,
+            defaults_key.productChannel,
+            defaults_key.saleNo,
+            defaults_key.saleManage,
+            defaults_key.collectPeriodType,
+            defaults_key.collectPeriodValue,
+            defaults_key.collectFrequencyType,
           ]
         },
         {
@@ -735,7 +766,7 @@ const interfaces = {
               isReq: 'N',
               desc: '',
               children: [{
-                  key: 'petBreed',
+                  key: 'petType',
                   name: '宠物类型',
                   type: 'Integer',
                   isReq: 'Y',
@@ -753,7 +784,7 @@ const interfaces = {
                   name: '性别',
                   type: 'Integer',
                   isReq: 'Y',
-                  desc: '1、公；2、母'
+                  desc: '1、母；2、公'
               },
               {
                   key: 'petSterilization',
@@ -828,6 +859,14 @@ const interfaces = {
           desc: ''
         },
         defaults_key.proposalNo,
+        defaults_key.firstPeriodPremium,
+          {
+              key: 'secondPeriodPremium',
+              name: '期交保费',
+              type: 'Long',
+              isReq: 'Y',
+              desc: '次期开始的每期保费'
+          },
         defaults_key.payTime,
           {
               key: 'payType',
@@ -909,13 +948,13 @@ const interfaces = {
         defaults_key.refundType,
         defaults_key.refundMoneyType,
         defaults_key.refundActPremium,
-        {
-            key: 'checkPictureUrl',
-            name: '审核图片的链接',
-            type: 'List<String>',
-            isReq: 'N',
-            desc: '退保时用户上传的供保司审核用的身份证图片的链接'
-        }
+          {
+              key: 'inHesitate',
+              name: '犹豫期类型',
+              type: 'Integer',
+              isReq: 'N',
+              desc: '1、犹豫期内；2、犹豫期外普通退款'
+          }
       ]
     }
   ],
@@ -933,7 +972,20 @@ const interfaces = {
       children: [
         defaults_key.orderNo,
         defaults_key.policyNo,
-        defaults_key.refundTime
+          {
+              key: 'refundTime',
+              name: '保险公司操作的退保时间',
+              type: 'String',
+              isReq: 'N',
+              desc: 'refundType为0时必传；yyyy-MM-dd HH:mm:ss'
+          },
+          {
+              key: 'needRefund',
+              name: '是否需要水滴公司进行退款',
+              type: 'Boolean',
+              isReq: 'N',
+              desc: '默认为false，对接前双方业务约定'
+          }
       ]
     }
   ],
@@ -1193,6 +1245,13 @@ const interfaces = {
                     type: 'Integer',
                     isReq: 'Y',
                     desc: '0 成功  1失败 保险公司需要根据这个状态进行相关处理，并对保单进行解锁处理'
+                },
+                {
+                    key: 'prePayDay',
+                    name: '预计扣费日期',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd'
                 }
                 // {
                 //     key: 'paymentMessage',
@@ -1518,7 +1577,7 @@ const interfaces = {
                     name: '订单状态',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '1.已支付；3：已承保；12：已退保；6：保单失效；0：人核通过可支付；-6：人核失败关闭订单(1和-6为人工核保专用)'
+                    desc: '1.已支付；3：已承保；12：已退保；6：保单失效；0：人核通过可支付；-6：人核失败关闭订单(0和-6为人工核保专用)'
                 },
                 {
                     key: 'needSave',
@@ -1945,6 +2004,53 @@ const interfaces = {
                 defaults_key.orderNo,
                 defaults_key.policyNo
             ]
+        }
+    ],
+    通知扣款请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'PolicyOrderRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                {
+                    key: 'orderNo',
+                    name: '水滴订单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                defaults_key.proposalNo,
+                defaults_key.firstPeriodPremium,
+                {
+                    key: 'secondPeriodPremium',
+                    name: '期交保费',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: '次期开始的每期保费'
+                }
+            ]
+        }
+    ],
+    通知扣款返回: [
+        defaults_key.supplierNo,
+        {
+            key: 'code',
+            name: '本次请求执行的状态',
+            type: 'Integer',
+            isReq: 'Y',
+            desc: '接收成功：0；接收失败：1（失败时errorMsg和errorCode必传）'
+        },
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'PolicyOrderRequestBody',
+            isReq: 'Y',
+            desc: ''
         }
     ]
 }
