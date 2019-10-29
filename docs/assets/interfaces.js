@@ -337,10 +337,10 @@ const defaults_key = {
     },
   policyUrl: {
     key: 'policyUrl',
-    name: '电子保单Url',
+    name: '电子保单',
     type: 'String',
     isReq: 'N',
-    desc: ''
+    desc: '只有在电子保单类型为1、2时使用'
   },
   policyNo: {
     key: 'policyNo',
@@ -928,7 +928,21 @@ const interfaces = {
         defaults_key.orderNo,
         defaults_key.policyNo,
         defaults_key.policyTime,
-        defaults_key.policyUrl
+	      {
+		      key : 'elePolicyType',
+		      name : '电子保单类型',
+		      type : 'Integer',
+		      isReq : 'N',
+		      desc : '电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串（1、2使用policyUrl); 3、文件流InputStream'
+	      },
+	      defaults_key.policyUrl,
+          {
+		      key : 'policyStream',
+		      name : '电子保单文件流',
+		      type : 'InputStream',
+		      isReq : 'N',
+		      desc : '只有在电子保单类型为3、文件流InputStream时必传'
+	      }
       ]
     }
   ],
@@ -1584,15 +1598,29 @@ const interfaces = {
                     name: '是否需要水滴下载保存电子保单',
                     type: 'Boolean',
                     isReq: 'N',
-                    desc: '只有orderStatus为3时才会处理该字段；；；为true时水滴会按照policyUrl下载保单地址，并存储在水滴'
+                    desc: '为true且orderStatus为3时才会处理电子保单，并存储在水滴'
                 },
-                {
-                    key: 'policyUrl',
-                    name: '电子保单下载地址',
-                    type: 'String',
-                    isReq: 'N',
-                    desc: '只有orderStatus为3时才会处理该字段'
-                }
+	            {
+		            key: 'elePolicyType',
+		            name: '电子保单类型',
+		            type: 'Integer',
+		            isReq: 'N',
+		            desc: '只有orderStatus为3时才会处理电子保单,电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串（1、2使用policyUrl); 3、文件流InputStream'
+	            },
+	            {
+		            key: 'policyUrl',
+		            name: '电子保单',
+		            type: 'String',
+		            isReq: 'N',
+		            desc: '电子保单类型1、2使用'
+	            },
+	            {
+		            key: 'policyStream',
+		            name: '电子保单文件流',
+		            type: 'InputStream',
+		            isReq: 'N',
+		            desc: '只有在电子保单类型为3、文件流InputStream时必传'
+	            }
             ]
         }
     ],
