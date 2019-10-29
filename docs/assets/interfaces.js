@@ -817,7 +817,7 @@ const interfaces = {
     defaults_key.errorMsg,
     {
       key: 'body',
-      name: '请求信息的主体',
+      name: '返回信息的主体',
       type: 'ProposalOrderResultBody',
       isReq: 'N',
       desc: '成功时必传',
@@ -920,7 +920,7 @@ const interfaces = {
     defaults_key.errorMsg,
     {
       key: 'body',
-      name: '请求信息的主体',
+      name: '返回信息的主体',
       type: 'PolicyOrderResultBody',
       isReq: 'Y',
       desc: '',
@@ -965,7 +965,7 @@ const interfaces = {
     defaults_key.errorMsg,
     {
       key: 'body',
-      name: '请求信息的主体',
+      name: '返回信息的主体',
       type: 'RefundOrderResultBody',
       isReq: 'Y',
       desc: '',
@@ -1019,7 +1019,7 @@ const interfaces = {
     defaults_key.errorMsg,
     {
       key: 'body',
-      name: '请求信息的主体',
+      name: '返回信息的主体',
       type: 'RenewOrderResultBody',
       isReq: 'N',
       desc: '成功时必传',
@@ -1085,7 +1085,7 @@ const interfaces = {
     defaults_key.errorMsg,
     {
       key: 'body',
-      name: '请求信息的主体',
+      name: '返回信息的主体',
       type: 'RefundNoticeResultBody',
       isReq: 'N',
       desc: '成功时必传',
@@ -1126,7 +1126,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'List<RenewLockResultBody>',
             isReq: 'N',
             desc: '成功时必传',
@@ -1270,7 +1270,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'List<RenewPayResultBody>',
             isReq: 'N',
             desc: '成功时必传',
@@ -1312,7 +1312,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'RefundCalResultBody',
             isReq: 'N',
             desc: '成功时必传',
@@ -1357,7 +1357,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'UpgradeOrderResultBody',
             isReq: 'N',
             desc: '成功时必传',
@@ -1441,7 +1441,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'PolicyFreeResultBody',
             isReq: 'N',
             desc: '成功时必传',
@@ -1539,7 +1539,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'DataTransferResultBody',
             isReq: 'N',
             desc: '成功时必传',
@@ -1606,7 +1606,7 @@ const interfaces = {
         defaults_key.supplierNo,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'OrderReceiptRequestBody',
             isReq: 'Y',
             desc: '',
@@ -1650,7 +1650,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'QueryPolicyResultBody',
             isReq: 'N',
             desc: '成功时必传',
@@ -1704,7 +1704,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'PreProposalResultBody',
             isReq: 'N',
             desc: '成功时必传',
@@ -1766,7 +1766,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'QueryOrderResultBody',
             isReq: 'N',
             desc: '成功时必传',
@@ -1857,7 +1857,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'ModifyOrderResultBody',
             isReq: 'N',
             desc: '成功时必传',
@@ -1996,7 +1996,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'VisitNoticeResultBody',
             isReq: 'N',
             desc: '成功时必传',
@@ -2047,7 +2047,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'PolicyOrderResultBody',
             isReq: 'Y',
             desc: ''
@@ -2114,7 +2114,7 @@ const interfaces = {
         defaults_key.errorMsg,
         {
             key: 'body',
-            name: '请求信息的主体',
+            name: '返回信息的主体',
             type: 'WelfareOrderResultBody',
             isReq: 'Y',
             desc: '',
