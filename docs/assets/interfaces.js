@@ -2109,13 +2109,7 @@ const interfaces = {
     ],
     申请福利返回: [
         defaults_key.supplierNo,
-        {
-            key: 'code',
-            name: '本次请求执行的状态',
-            type: 'Integer',
-            isReq: 'Y',
-            desc: '接收成功：0；接收失败：1（失败时errorMsg和errorCode必传）'
-        },
+        defaults_key.code,
         defaults_key.errorCode,
         defaults_key.errorMsg,
         {
@@ -2137,7 +2131,7 @@ const interfaces = {
                     name: '体检单号',
                     type: 'String',
                     isReq: 'Y',
-                    desc: '合作方唯一编号,与保司一一对应'
+                    desc: '合作方唯一编号,与保单一一对应'
                 }
             ]
         }
@@ -2205,13 +2199,7 @@ const interfaces = {
     ],
     福利状态通知返回:[
         defaults_key.supplierNo,
-        {
-            key: 'code',
-            name: '本次请求执行的状态',
-            type: 'Integer',
-            isReq: 'Y',
-            desc: '接收成功：0；接收失败：1（失败时errorMsg和errorCode必传）'
-        },
+        defaults_key.code,
         defaults_key.errorCode,
         defaults_key.errorMsg
     ],
@@ -2248,13 +2236,7 @@ const interfaces = {
             ],
             取消福利接口返回:[
                 defaults_key.supplierNo,
-                {
-                    key: 'code',
-                    name: '本次请求执行的状态',
-                    type: 'Integer',
-                    isReq: 'Y',
-                    desc: '接收成功：0；接收失败：1（失败时errorMsg和errorCode必传）'
-                },
+                defaults_key.code,
                 defaults_key.errorCode,
                 defaults_key.errorMsg
             ]
