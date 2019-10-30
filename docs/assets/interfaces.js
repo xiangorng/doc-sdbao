@@ -933,16 +933,9 @@ const interfaces = {
 		      name : '电子保单类型',
 		      type : 'Integer',
 		      isReq : 'N',
-		      desc : '电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串（1、2使用policyUrl); 3、文件流InputStream'
+		      desc : '电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串'
 	      },
-	      defaults_key.policyUrl,
-          {
-		      key : 'policyStream',
-		      name : '电子保单文件流',
-		      type : 'InputStream',
-		      isReq : 'N',
-		      desc : '只有在电子保单类型为3、文件流InputStream时必传'
-	      }
+	      defaults_key.policyUrl
       ]
     }
   ],
@@ -1605,7 +1598,7 @@ const interfaces = {
 		            name: '电子保单类型',
 		            type: 'Integer',
 		            isReq: 'N',
-		            desc: '只有orderStatus为3时才会处理电子保单,电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串（1、2使用policyUrl); 3、文件流InputStream'
+		            desc: '只有orderStatus为3时才会处理电子保单,电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串'
 	            },
 	            {
 		            key: 'policyUrl',
@@ -1613,13 +1606,6 @@ const interfaces = {
 		            type: 'String',
 		            isReq: 'N',
 		            desc: '电子保单类型1、2使用'
-	            },
-	            {
-		            key: 'policyStream',
-		            name: '电子保单文件流',
-		            type: 'InputStream',
-		            isReq: 'N',
-		            desc: '只有在电子保单类型为3、文件流InputStream时必传'
 	            }
             ]
         }
