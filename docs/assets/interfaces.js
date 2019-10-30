@@ -2261,13 +2261,13 @@ const interfaces = {
                     isReq: 'Y',
                     desc: '1:退保;2:失效'
                 }
-            ],
-            取消福利接口返回:[
-                defaults_key.supplierNo,
-                defaults_key.code,
-                defaults_key.errorCode,
-                defaults_key.errorMsg
             ]
         }
+    ],
+    取消福利接口返回:[
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg
     ]
 }
