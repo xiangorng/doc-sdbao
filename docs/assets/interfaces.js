@@ -2268,4 +2268,6 @@ const interfaces = {
                 defaults_key.errorCode,
                 defaults_key.errorMsg
             ]
+        }
+    ]
 }
