@@ -2211,7 +2211,7 @@ const interfaces = {
             type: 'CancelWelfareRequestBody',
             isReq: 'Y',
             desc: '',
-            children: [
+            children:[
                 {
                     key: 'orderNo',
                     name: '水滴订单号',
@@ -2234,7 +2234,7 @@ const interfaces = {
                     desc: '1:退保;2:失效'
                 }
             ],
-            取消福利接口返回: [
+            取消福利接口返回:[
                 defaults_key.supplierNo,
                 defaults_key.code,
                 defaults_key.errorCode,
