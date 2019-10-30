@@ -326,7 +326,7 @@ const defaults_key = {
         name: '退保类型',
         type: 'Integer',
         isReq: 'N',
-        desc: 'refundType为0时必传；；；0：正常，按照退款试算接口返回的金额退款；1：全额退款；2：退当期保费'
+        desc: 'refundType非1时必传；；；0：正常退保，按照退款试算接口返回的金额退保；1：全额退保；2：当期退保；3：犹豫期退保；4：犹豫期外退保'
     },
     refundActPremium: {
         key: 'refundActPremium',
@@ -961,14 +961,7 @@ const interfaces = {
         defaults_key.refundEffectTime,
         defaults_key.refundType,
         defaults_key.refundMoneyType,
-        defaults_key.refundActPremium,
-          {
-              key: 'inHesitate',
-              name: '犹豫期类型',
-              type: 'Integer',
-              isReq: 'N',
-              desc: '1、犹豫期内；2、犹豫期外普通退款'
-          }
+        defaults_key.refundActPremium
       ]
     }
   ],
