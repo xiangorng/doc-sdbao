@@ -1592,6 +1592,13 @@ const interfaces = {
                     type: 'String',
                     isReq: 'N',
                     desc: '只有orderStatus为3时才会处理该字段'
+                },
+                {
+                    key: 'reason',
+                    name: '核保失败原因',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '只有orderStatus为-6时才会处理该字段'
                 }
             ]
         }
