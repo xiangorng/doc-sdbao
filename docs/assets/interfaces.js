@@ -326,7 +326,7 @@ const defaults_key = {
         name: '退保类型',
         type: 'Integer',
         isReq: 'N',
-        desc: 'refundType为0时必传；；；0：正常，按照退款试算接口返回的金额退款；1：全额退款；2：退当期保费'
+        desc: 'refundType非1时必传；；；0：正常退保，按照退款试算接口返回的金额退保；1：全额退保；2：当期退保；3：犹豫期退保；4：犹豫期外退保'
     },
     refundActPremium: {
         key: 'refundActPremium',
@@ -337,10 +337,10 @@ const defaults_key = {
     },
   policyUrl: {
     key: 'policyUrl',
-    name: '电子保单Url',
+    name: '电子保单',
     type: 'String',
     isReq: 'N',
-    desc: ''
+    desc: '只有在电子保单类型为1、2时使用'
   },
   policyNo: {
     key: 'policyNo',
@@ -928,7 +928,14 @@ const interfaces = {
         defaults_key.orderNo,
         defaults_key.policyNo,
         defaults_key.policyTime,
-        defaults_key.policyUrl
+	      {
+		      key : 'elePolicyType',
+		      name : '电子保单类型',
+		      type : 'Integer',
+		      isReq : 'N',
+		      desc : '电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串'
+	      },
+	      defaults_key.policyUrl
       ]
     }
   ],
@@ -947,14 +954,7 @@ const interfaces = {
         defaults_key.refundEffectTime,
         defaults_key.refundType,
         defaults_key.refundMoneyType,
-        defaults_key.refundActPremium,
-          {
-              key: 'inHesitate',
-              name: '犹豫期类型',
-              type: 'Integer',
-              isReq: 'N',
-              desc: '1、犹豫期内；2、犹豫期外普通退款'
-          }
+        defaults_key.refundActPremium
       ]
     }
   ],
@@ -1584,15 +1584,22 @@ const interfaces = {
                     name: '是否需要水滴下载保存电子保单',
                     type: 'Boolean',
                     isReq: 'N',
-                    desc: '只有orderStatus为3时才会处理该字段；；；为true时水滴会按照policyUrl下载保单地址，并存储在水滴'
+                    desc: '为true且orderStatus为3时才会处理电子保单，并存储在水滴'
                 },
-                {
-                    key: 'policyUrl',
-                    name: '电子保单下载地址',
-                    type: 'String',
-                    isReq: 'N',
-                    desc: '只有orderStatus为3时才会处理该字段'
-                },
+	            {
+		            key: 'elePolicyType',
+		            name: '电子保单类型',
+		            type: 'Integer',
+		            isReq: 'N',
+		            desc: '只有orderStatus为3时才会处理电子保单,电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串'
+	            },
+	            {
+		            key: 'policyUrl',
+		            name: '电子保单',
+		            type: 'String',
+		            isReq: 'N',
+		            desc: '电子保单类型1、2使用'
+	            },
                 {
                     key: 'reason',
                     name: '核保失败原因',
