@@ -2241,8 +2241,8 @@ const interfaces = {
                     desc: 'yyyy-MM-dd HH:mm:ss'
                 },
                 {
-                    key: 'status',
-                    name: '状态',
+                    key: 'type',
+                    name: '类型',
                     type: 'Integer',
                     isReq: 'Y',
                     desc: '1:退保;2:失效'
