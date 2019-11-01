@@ -1599,7 +1599,14 @@ const interfaces = {
 		            type: 'String',
 		            isReq: 'N',
 		            desc: '电子保单类型1、2使用'
-	            }
+	            },
+                {
+                    key: 'reason',
+                    name: '核保失败原因',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '只有orderStatus为-6时才会处理该字段'
+                }
             ]
         }
     ],
