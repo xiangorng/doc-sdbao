@@ -2167,7 +2167,7 @@ const interfaces = {
                     desc: ''
                 },
                 {
-                    key: 'status',
+                    key: 'phyStatus',
                     name: '体检状态',
                     type: 'Integer',
                     isReq: 'Y',
@@ -2241,7 +2241,7 @@ const interfaces = {
                     desc: 'yyyy-MM-dd HH:mm:ss'
                 },
                 {
-                    key: 'type',
+                    key: 'cancelType',
                     name: '类型',
                     type: 'Integer',
                     isReq: 'Y',
