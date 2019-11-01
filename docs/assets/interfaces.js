@@ -2242,7 +2242,7 @@ const interfaces = {
                 },
                 {
                     key: 'cancelType',
-                    name: '类型',
+                    name: '取消类型',
                     type: 'Integer',
                     isReq: 'Y',
                     desc: '1:退保;2:失效'
