@@ -2066,5 +2066,33 @@ const interfaces = {
             isReq: 'Y',
             desc: ''
         }
+    ],
+    查询电子保单请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'DownPolicyRequest',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                {
+                    key: 'policyNo',
+                    name: '保单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                }
+            ]
+        }
+    ],
+    查询电子保单返回: [
+        {
+            key: '',
+            name: '',
+            type: 'base64或者stream',
+            isReq: 'Y',
+            desc: '返回内容不加密，原生保单对应的base64字符串或者文件流，在返回头设置头信息response.setHeader("elePolicyType", "3"); elePolicyType：2、base64；3、stream'
+        }
     ]
 }
