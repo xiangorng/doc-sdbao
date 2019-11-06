@@ -933,16 +933,9 @@ const interfaces = {
 		      name : '电子保单类型',
 		      type : 'Integer',
 		      isReq : 'N',
-		      desc : '电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串（1、2使用policyUrl); 3、文件流InputStream'
+		      desc : '电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串'
 	      },
-	      defaults_key.policyUrl,
-          {
-		      key : 'policyStream',
-		      name : '电子保单文件流',
-		      type : 'InputStream',
-		      isReq : 'N',
-		      desc : '只有在电子保单类型为3、文件流InputStream时必传'
-	      }
+	      defaults_key.policyUrl
       ]
     }
   ],
@@ -1598,7 +1591,7 @@ const interfaces = {
 		            name: '电子保单类型',
 		            type: 'Integer',
 		            isReq: 'N',
-		            desc: '只有orderStatus为3时才会处理电子保单,电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串（1、2使用policyUrl); 3、文件流InputStream'
+		            desc: '只有orderStatus为3时才会处理电子保单,电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串'
 	            },
 	            {
 		            key: 'policyUrl',
@@ -1607,13 +1600,13 @@ const interfaces = {
 		            isReq: 'N',
 		            desc: '电子保单类型1、2使用'
 	            },
-	            {
-		            key: 'policyStream',
-		            name: '电子保单文件流',
-		            type: 'InputStream',
-		            isReq: 'N',
-		            desc: '只有在电子保单类型为3、文件流InputStream时必传'
-	            }
+                {
+                    key: 'reason',
+                    name: '核保失败原因',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '只有orderStatus为-6时才会处理该字段'
+                }
             ]
         }
     ],
@@ -2262,5 +2255,33 @@ const interfaces = {
         defaults_key.code,
         defaults_key.errorCode,
         defaults_key.errorMsg
+    ],
+    查询电子保单请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'DownPolicyRequest',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                {
+                    key: 'policyNo',
+                    name: '保单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                }
+            ]
+        }
+    ],
+    查询电子保单返回: [
+        {
+            key: '',
+            name: '',
+            type: 'base64或者stream',
+            isReq: 'Y',
+            desc: '返回内容不加密，原生保单对应的base64字符串或者文件流，在返回头设置头信息response.setHeader("elePolicyType", "3"); elePolicyType：2、base64；3、stream'
+        }
     ]
 }
