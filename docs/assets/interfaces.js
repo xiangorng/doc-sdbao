@@ -2283,5 +2283,52 @@ const interfaces = {
             isReq: 'Y',
             desc: '返回内容不加密，原生保单对应的base64字符串或者文件流，在返回头设置头信息response.setHeader("elePolicyType", "3"); elePolicyType：2、base64；3、stream'
         }
+    ],
+    退款状态接口请求:[
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'RefundMoneyRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children:[
+                {
+                    key: 'orderNo',
+                    name: '水滴订单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                defaults_key.policyNo,
+                {
+                    key: 'refundActPremium',
+                    name: '实际退款金额',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'refundMoneyTime',
+                    name: '我方退款时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'refundMoneyStatus',
+                    name: '退款状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '1:成功;2:失败'
+                }
+            ]
+        }
+    ],
+    退款状态接口返回:[
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg
     ]
 }
