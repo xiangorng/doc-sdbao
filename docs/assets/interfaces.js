@@ -340,7 +340,7 @@ const defaults_key = {
     name: '电子保单',
     type: 'String',
     isReq: 'N',
-    desc: '只有在电子保单类型为1、2时使用'
+    desc: ''
   },
   policyNo: {
     key: 'policyNo',
@@ -928,13 +928,6 @@ const interfaces = {
         defaults_key.orderNo,
         defaults_key.policyNo,
         defaults_key.policyTime,
-	      {
-		      key : 'elePolicyType',
-		      name : '电子保单类型',
-		      type : 'Integer',
-		      isReq : 'N',
-		      desc : '电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串'
-	      },
 	      defaults_key.policyUrl
       ]
     }
@@ -1587,18 +1580,11 @@ const interfaces = {
                     desc: '为true且orderStatus为3时才会处理电子保单，并存储在水滴'
                 },
 	            {
-		            key: 'elePolicyType',
-		            name: '电子保单类型',
-		            type: 'Integer',
-		            isReq: 'N',
-		            desc: '只有orderStatus为3时才会处理电子保单,电子保单类型: 1、可下载的webUrl（使用ip无法下载）; 2、base64字符串'
-	            },
-	            {
 		            key: 'policyUrl',
 		            name: '电子保单',
 		            type: 'String',
 		            isReq: 'N',
-		            desc: '电子保单类型1、2使用'
+		            desc: ''
 	            },
                 {
                     key: 'reason',
