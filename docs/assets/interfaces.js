@@ -326,7 +326,7 @@ const defaults_key = {
         name: '退保类型',
         type: 'Integer',
         isReq: 'N',
-        desc: 'refundType非1时必传；；；0：正常退保，按照退款试算接口返回的金额退保；1：全额退保；2：当期退保；3：犹豫期退保；4：犹豫期外退保'
+        desc: 'refundType非1时必传；；；0：正常退保，按照退款试算接口返回的金额退保；1：全额退保；2：当期退保；3：犹豫期退保；4：犹豫期外退保；5.生效前退保'
     },
     refundActPremium: {
         key: 'refundActPremium',
