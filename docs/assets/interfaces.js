@@ -1178,7 +1178,7 @@ const interfaces = {
                     name: '宽限期截止时间',
                     type: 'String',
                     isReq: 'Y',
-                    desc: 'yyyy-MM-dd HH:mm:ss'
+                    desc: '如果2019-11-10为宽限期最后一天，则该字段需传 2019-11-10 23:59:59。宽限期内未扣费成功，水滴在2019-11-11 零点 会将保单置为失效'
                 },
                 {
                     key: 'status',
