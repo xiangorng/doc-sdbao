@@ -1045,7 +1045,7 @@ const interfaces = {
               name: '犹豫期类型',
               type: 'Integer',
               isReq: 'N',
-              desc: '1、犹豫期内；2、犹豫期外普通退款'
+              desc: '长险必传；；；1、犹豫期内；2、犹豫期外普通退款;'
           },
         {
           key: 'reason',
@@ -1053,21 +1053,7 @@ const interfaces = {
           type: 'String',
           isReq: 'Y',
           desc: ''
-        },
-          {
-              key: 'checkResult',
-              name: '审核及退保结果',
-              type: 'Boolean',
-              isReq: 'N',
-              desc: '审核通过并退保成功为true，审核不通过为false'
-          },
-          {
-              key: 'checkResultStr',
-              name: '退保人工审核未通过的原因描述',
-              type: 'String',
-              isReq: 'N',
-              desc: '审核不通过时该字段必传'
-          }
+        }
       ]
     }
   ],
