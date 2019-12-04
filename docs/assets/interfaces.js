@@ -1045,7 +1045,7 @@ const interfaces = {
               name: '犹豫期类型',
               type: 'Integer',
               isReq: 'N',
-              desc: '1、犹豫期内；2、犹豫期外普通退款'
+              desc: '长险必传；；；1、犹豫期内；2、犹豫期外普通退款;'
           },
         {
           key: 'reason',
@@ -1053,21 +1053,7 @@ const interfaces = {
           type: 'String',
           isReq: 'Y',
           desc: ''
-        },
-          {
-              key: 'checkResult',
-              name: '审核及退保结果',
-              type: 'Boolean',
-              isReq: 'N',
-              desc: '审核通过并退保成功为true，审核不通过为false'
-          },
-          {
-              key: 'checkResultStr',
-              name: '退保人工审核未通过的原因描述',
-              type: 'String',
-              isReq: 'N',
-              desc: '审核不通过时该字段必传'
-          }
+        }
       ]
     }
   ],
@@ -2319,6 +2305,107 @@ const interfaces = {
         }
     ],
     退款状态接口返回:[
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg
+    ],
+    纸质保单申请请求:[
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'PaperPolicyRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children:[
+                {
+                    key: 'orderNo',
+                    name: '水滴订单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                defaults_key.policyNo,
+                {
+                    key: 'name',
+                    name: '收件人',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'mobile',
+                    name: '收件手机号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'address',
+                    name: '快递地址',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'applyTime',
+                    name: '申请时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                }
+            ]
+        }
+    ],
+    纸质保单申请返回:[
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg
+    ],
+    快递单号通知请求:[
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'ExpressNoticeRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children:[
+                {
+                    key: 'orderNo',
+                    name: '水滴订单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                defaults_key.policyNo,
+                {
+                    key: 'expressCompany',
+                    name: '快递公司名称',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'expressOrderNO',
+                    name: '快递单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'expressTime',
+                    name: '寄出时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                }
+            ]
+        }
+    ],
+    快递单号通知返回:[
         defaults_key.supplierNo,
         defaults_key.code,
         defaults_key.errorCode,
