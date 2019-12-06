@@ -228,7 +228,7 @@ const defaults_key = {
         name: '销售渠道',
         type: 'Integer',
         isReq: 'N',
-        desc: '1：电销共建；5：网电共建'
+        desc: '1：网销2共建；5：网电共建'
     },
     saleNo: {
         key: 'saleNo',
