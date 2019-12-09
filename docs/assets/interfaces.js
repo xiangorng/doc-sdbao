@@ -802,7 +802,7 @@ const interfaces = {
               }]
           },
           {
-              key: 'airlineInfor',
+              key: 'airlineInfo',
               name: '航班信息',
               type: 'AirlineInfor',
               isReq: 'N',
@@ -847,14 +847,14 @@ const interfaces = {
                       name: '计划起飞时间',
                       type: 'String',
                       isReq: 'Y',
-                      desc: '接口中计划出港时间'
+                      desc: '接口中计划出港时间 yyyy-MM-dd HH:mm:ss'
                   },
                   {
                       key: 'aviationDstTime',
                       name: '计划落地时间',
                       type: 'String',
                       isReq: 'Y',
-                      desc: '接口中计划到港时间'
+                      desc: '接口中计划到港时间 yyyy-MM-dd HH:mm:ss'
                   }]
           }
       ]
@@ -2496,7 +2496,7 @@ const interfaces = {
                     name: '是否需要水滴理赔打款',
                     type: 'Boolean',
                     isReq: 'Y',
-                    desc: '默认为true'
+                    desc: '默认为false'
                 }
             ]
         }
