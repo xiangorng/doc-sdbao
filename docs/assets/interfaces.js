@@ -800,6 +800,62 @@ const interfaces = {
                   isReq: 'Y',
                   desc: ''
               }]
+          },
+          {
+              key: 'airlineInfor',
+              name: '航班信息',
+              type: 'AirlineInfor',
+              isReq: 'N',
+              desc: '',
+              children: [{
+                  key: 'aviationNumber',
+                  name: '航班号',
+                  type: 'String',
+                  isReq: 'Y',
+                  desc: ''
+              },
+                  {
+                      key: 'bookingTime',
+                      name: '订票日期',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: 'yyyy-MM-dd HH:mm:ss'
+                  },
+                  {
+                      key: 'travelTime',
+                      name: '起飞日期',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: 'yyyy-MM-dd HH:mm:ss'
+                  },
+                  {
+                      key: 'aviationDepName',
+                      name: '出港机场名称',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: ''
+                  },
+                  {
+                      key: 'aviationDstName',
+                      name: '进港机场名称',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: ''
+                  },
+                  {
+                      key: 'aviationDepTime',
+                      name: '计划起飞时间',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: '接口中计划出港时间'
+                  },
+                  {
+                      key: 'aviationDstTime',
+                      name: '计划落地时间',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: '接口中计划到港时间'
+                  }]
           }
       ]
     }
@@ -2409,6 +2465,45 @@ const interfaces = {
         defaults_key.supplierNo,
         defaults_key.code,
         defaults_key.errorCode,
+        defaults_key.errorMsg
+    ],
+    理赔确认通知请求:[
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'claimNoticeRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children:[
+                defaults_key.policyNo,
+                {
+                    key: 'registerNo',
+                    name: '报案编号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'claimPremium',
+                    name: '理赔金额',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
+                    key: 'shuidiClaimFlag',
+                    name: '是否需要水滴理赔打款',
+                    type: 'Boolean',
+                    isReq: 'Y',
+                    desc: '默认为true'
+                }
+            ]
+        }
+    ],
+    理赔确认通知返回:[
+        defaults_key.supplierNo,
+        defaults_key.code,
         defaults_key.errorMsg
     ]
 }
