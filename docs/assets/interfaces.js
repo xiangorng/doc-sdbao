@@ -800,62 +800,6 @@ const interfaces = {
                   isReq: 'Y',
                   desc: ''
               }]
-          },
-          {
-              key: 'airlineInfo',
-              name: '航班信息',
-              type: 'AirlineInfor',
-              isReq: 'N',
-              desc: '',
-              children: [{
-                  key: 'aviationNumber',
-                  name: '航班号',
-                  type: 'String',
-                  isReq: 'Y',
-                  desc: ''
-              },
-                  {
-                      key: 'bookingTime',
-                      name: '订票日期',
-                      type: 'String',
-                      isReq: 'Y',
-                      desc: 'yyyy-MM-dd HH:mm:ss'
-                  },
-                  {
-                      key: 'travelTime',
-                      name: '起飞日期',
-                      type: 'String',
-                      isReq: 'Y',
-                      desc: 'yyyy-MM-dd HH:mm:ss'
-                  },
-                  {
-                      key: 'aviationDepName',
-                      name: '出港机场名称',
-                      type: 'String',
-                      isReq: 'Y',
-                      desc: ''
-                  },
-                  {
-                      key: 'aviationDstName',
-                      name: '进港机场名称',
-                      type: 'String',
-                      isReq: 'Y',
-                      desc: ''
-                  },
-                  {
-                      key: 'aviationDepTime',
-                      name: '计划起飞时间',
-                      type: 'String',
-                      isReq: 'Y',
-                      desc: '接口中计划出港时间 yyyy-MM-dd HH:mm:ss'
-                  },
-                  {
-                      key: 'aviationDstTime',
-                      name: '计划落地时间',
-                      type: 'String',
-                      isReq: 'Y',
-                      desc: '接口中计划到港时间 yyyy-MM-dd HH:mm:ss'
-                  }]
           }
       ]
     }
@@ -965,6 +909,62 @@ const interfaces = {
               type: 'String',
               isReq: 'N',
               desc: '保险公司需要该信息时需提前与水滴产品经理确认,非银行卡支付时使用'
+          },
+          {
+              key: 'airlineInfo',
+              name: '航班信息',
+              type: 'AirlineInfor',
+              isReq: 'N',
+              desc: '',
+              children: [{
+                  key: 'aviationNumber',
+                  name: '航班号',
+                  type: 'String',
+                  isReq: 'Y',
+                  desc: ''
+              },
+                  {
+                      key: 'bookingTime',
+                      name: '订票日期',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: 'yyyy-MM-dd HH:mm:ss'
+                  },
+                  {
+                      key: 'travelTime',
+                      name: '起飞日期',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: 'yyyy-MM-dd HH:mm:ss'
+                  },
+                  {
+                      key: 'aviationDepName',
+                      name: '出港机场名称',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: ''
+                  },
+                  {
+                      key: 'aviationDstName',
+                      name: '进港机场名称',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: ''
+                  },
+                  {
+                      key: 'aviationDepTime',
+                      name: '计划起飞时间',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: '接口中计划出港时间 yyyy-MM-dd HH:mm:ss'
+                  },
+                  {
+                      key: 'aviationDstTime',
+                      name: '计划落地时间',
+                      type: 'String',
+                      isReq: 'Y',
+                      desc: '接口中计划到港时间 yyyy-MM-dd HH:mm:ss'
+                  }]
           }
       ]
     }
