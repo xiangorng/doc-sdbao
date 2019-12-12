@@ -1693,7 +1693,7 @@ const interfaces = {
                     name: '核保失败原因',
                     type: 'String',
                     isReq: 'N',
-                    desc: '只有orderStatus为-6时才会处理该字段'
+                    desc: '只有orderStatus为-1或-3时才会处理该字段'
                 }
             ]
         }
