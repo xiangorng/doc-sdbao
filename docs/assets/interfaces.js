@@ -298,7 +298,7 @@ const defaults_key = {
     name: '退保请求时间',
     type: 'String',
     isReq: 'Y',
-    desc: '本次退保，水滴公司第一次发起请求的时间'
+    desc: 'yyyy-MM-dd HH:mm:ss'
   },
   refundEffectTime: {
     key: 'refundEffectTime',
@@ -333,7 +333,7 @@ const defaults_key = {
         name: '实际退款金额',
         type: 'Long',
         isReq: 'N',
-        desc: 'refundType为0时必传；；；申请退款的实际退款金额，若对本退款金额有异议，保险公司请务必返回失败'
+        desc: 'refundType非1时必传；；；申请退款的实际退款金额，若对本退款金额有异议，保险公司请务必返回失败'
     },
   policyUrl: {
     key: 'policyUrl',
@@ -999,11 +999,11 @@ const interfaces = {
       children: [
         defaults_key.orderNo,
         defaults_key.policyNo,
-        defaults_key.refundReqTime,
-        defaults_key.refundEffectTime,
         defaults_key.refundType,
         defaults_key.refundMoneyType,
-        defaults_key.refundActPremium
+        defaults_key.refundActPremium,
+        defaults_key.refundReqTime,
+        defaults_key.refundEffectTime
       ]
     }
   ],
@@ -1022,18 +1022,39 @@ const interfaces = {
         defaults_key.orderNo,
         defaults_key.policyNo,
           {
-              key: 'refundTime',
-              name: '保险公司操作的退保时间',
-              type: 'String',
-              isReq: 'N',
-              desc: 'refundType为0时必传；yyyy-MM-dd HH:mm:ss'
+              key: 'lastPeriodNum',
+              name: '已收保费的最后期数',
+              type: 'Integer',
+              isReq: 'Y',
+              desc: '非分期产品时默认传1'
           },
           {
               key: 'needRefund',
               name: '是否需要水滴公司进行退款',
               type: 'Boolean',
+              isReq: 'Y',
+              desc: '水滴会进行校验，不一致时报警'
+          },
+          {
+              key: 'refundActPremium',
+              name: '实际退款金额',
+              type: 'Long',
               isReq: 'N',
-              desc: '默认为false，对接前双方业务约定'
+              desc: 'refundType非1时必传；；；水滴会进行校验'
+          },
+          {
+              key: 'refundEffectTime',
+              name: '退保生效时间',
+              type: 'String',
+              isReq: 'N',
+              desc: 'refundType非1时必传；；；yyyy-MM-dd HH:mm:ss'
+          },
+          {
+              key: 'refundEndTime',
+              name: '退保完成时间',
+              type: 'String',
+              isReq: 'N',
+              desc: 'refundType非1时必传；；；yyyy-MM-dd HH:mm:ss'
           }
       ]
     }
@@ -1086,30 +1107,56 @@ const interfaces = {
       children: [
         defaults_key.orderNo,
         defaults_key.policyNo,
-        defaults_key.refundMoney,
-        defaults_key.refundEffectTime,
-        defaults_key.refundTime,
+          {
+              key: 'refundMoneyType',
+              name: '退保类型',
+              type: 'Integer',
+              isReq: 'Y',
+              desc: '0：正常退保，按照退款试算接口返回的金额退保；1：全额退保；2：当期退保；3：犹豫期退保；4：犹豫期外退保；5.生效前退保'
+          },
+          {
+              key: 'lastPeriodNum',
+              name: '已收保费的最后期数',
+              type: 'Integer',
+              isReq: 'Y',
+              desc: '非分期产品时默认传1'
+          },
+          {
+              key: 'refundActPremium',
+              name: '实际退款金额',
+              type: 'Long',
+              isReq: 'Y',
+              desc: '用户申请退保时向用户退还的金额'
+          },
           {
               key: 'needRefund',
               name: '是否需要水滴公司进行退款',
               type: 'Boolean',
-              isReq: 'N',
-              desc: '默认为false，对接前双方业务约定'
+              isReq: 'Y',
+              desc: '水滴会进行校验，不一致时报警'
           },
           {
-              key: 'inHesitate',
-              name: '犹豫期类型',
-              type: 'Integer',
-              isReq: 'N',
-              desc: '长险必传；；；1、犹豫期内；2、犹豫期外普通退款;'
+              key: 'refundReqTime',
+              name: '退保请求时间',
+              type: 'String',
+              isReq: 'Y',
+              desc: 'yyyy-MM-dd HH:mm:ss'
           },
-        {
-          key: 'reason',
-          name: '退款的原因',
-          type: 'String',
-          isReq: 'Y',
-          desc: ''
-        }
+        defaults_key.refundEffectTime,
+          {
+              key: 'refundEndTime',
+              name: '退保完成时间',
+              type: 'String',
+              isReq: 'Y',
+              desc: 'yyyy-MM-dd HH:mm:ss'
+          },
+          {
+              key: 'reason',
+              name: '退保原因',
+              type: 'String',
+              isReq: 'Y'
+              ,desc: ''
+          }
       ]
     }
   ],
@@ -1126,8 +1173,7 @@ const interfaces = {
       desc: '成功时必传',
       children: [
         defaults_key.orderNo,
-        defaults_key.policyNo,
-        defaults_key.refundReqTime
+        defaults_key.policyNo
       ]
     }
   ],
@@ -1360,6 +1406,13 @@ const interfaces = {
                     type: 'Long',
                     isReq: 'Y',
                     desc: '正常退款时的退款金额'
+                },
+                {
+                    key: 'lastPeriodNum',
+                    name: '已收保费的最后期数',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '非分期产品时默认传1'
                 }
             ]
         }
@@ -1640,7 +1693,7 @@ const interfaces = {
                     name: '核保失败原因',
                     type: 'String',
                     isReq: 'N',
-                    desc: '只有orderStatus为-6时才会处理该字段'
+                    desc: '只有orderStatus为-1或-3时才会处理该字段'
                 }
             ]
         }
