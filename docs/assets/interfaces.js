@@ -2266,35 +2266,35 @@ const interfaces = {
                     name: '预约体检日期',
                     type: 'String',
                     isReq: 'N',
-                    desc: 'orderStatus为3时必传;yyyy-MM-dd'
+                    desc: 'phyStatus为3时必传;yyyy-MM-dd'
                 },
                 {
                     key: 'phyExamOrderTime',
                     name: '体检预约完成时间',
                     type: 'String',
                     isReq: 'N',
-                    desc: 'orderStatus为3时必传;yyyy-MM-dd HH:mm:ss'
+                    desc: 'phyStatus为3时必传;yyyy-MM-dd HH:mm:ss'
                 },
                 {
                     key: 'phyExamResult',
                     name: '体检结果',
                     type: 'Integer',
                     isReq: 'N',
-                    desc: 'orderStatus为4时必传;1:标准体;2:优选体'
+                    desc: 'phyStatus为4时必传;1:标准体;2:优选体'
                 },
                 {
                     key: 'phyExamReportUrl',
                     name: '体验报告Url',
                     type: 'String',
                     isReq: 'N',
-                    desc: 'orderStatus为4时必传'
+                    desc: 'phyStatus为4时必传'
                 },
                 {
                     key: 'phyExamReportJson',
                     name: '体检报告json集',
                     type: 'String',
                     isReq: 'N',
-                    desc: 'orderStatus为4时必传'
+                    desc: 'phyStatus为4时必传'
                 }
             ]
         }
