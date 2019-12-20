@@ -98,10 +98,10 @@ const defaults_key = {
   },
   totalPremium: {
     key: 'totalPremium',
-    name: '年化保费',
+    name: '总保费',
     type: 'Long',
-    isReq: 'Y',
-    desc: ''
+    isReq: 'N',
+    desc: '一年期产品传 长期险不传'
   },
   totalAmount: {
     key: 'totalAmount',
@@ -637,6 +637,7 @@ const interfaces = {
                   desc: '次期开始的每期保费'
               },
             defaults_key.totalAmount,
+            defaults_key.totalPremium,
             defaults_key.payPeriodType,
             defaults_key.payPeriodValue,
             defaults_key.payFrequency,
