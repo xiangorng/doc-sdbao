@@ -686,6 +686,13 @@ const interfaces = {
           ])
         },
         {
+            key: 'healthInformType',
+            name: '健告类型',
+            type: 'Integer',
+            isReq: 'N',
+            desc: '1.无健告；2.有健告但自动续保无需健告；3.有健告完全符合；4.有健告部分符合'
+        },
+        {
             key: 'smartProposal',
             name: '智能核保',
             type: 'SmartProposal',
