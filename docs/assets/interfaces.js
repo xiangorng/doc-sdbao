@@ -1440,7 +1440,7 @@ const interfaces = {
                     key: 'phyExamResult',
                     name: '体检结果',
                     type: 'Integer',
-                    isReq: '',
+                    isReq: 'Y',
                     desc: '1:标准体;2:优选体;3:优选除外体'
                 },
                 {
