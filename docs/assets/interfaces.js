@@ -1440,9 +1440,16 @@ const interfaces = {
                     key: 'phyExamResult',
                     name: '体检结果',
                     type: 'Integer',
-                    isReq: 'Y',
-                    desc: '1：标准体 2：优选体'
-                }
+                    isReq: '',
+                    desc: '1:标准体;2:优选体;3:优选除外体'
+                },
+                {
+                    key: 'exceptDiseaseCode',
+                    name: '除外疾病编码',
+                    type: 'List<String>',
+                    isReq: 'N',
+                    desc: 'phyExamResult为3时必传'
+                },
             ]
         }
     ],
@@ -2288,7 +2295,14 @@ const interfaces = {
                     name: '体检结果',
                     type: 'Integer',
                     isReq: 'N',
-                    desc: 'phyStatus为4时必传;1:标准体;2:优选体'
+                    desc: 'phyStatus为4时必传;1:标准体;2:优选体;3:优选除外体'
+                },
+                {
+                    key: 'exceptDiseaseCode',
+                    name: '除外疾病编码',
+                    type: 'List<String>',
+                    isReq: 'N',
+                    desc: 'phyStatus为4,且phyExamResult为3时必传'
                 },
                 {
                     key: 'phyExamReportUrl',
