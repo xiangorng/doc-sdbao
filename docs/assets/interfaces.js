@@ -867,14 +867,6 @@ const interfaces = {
           desc: ''
         },
         defaults_key.proposalNo,
-        defaults_key.firstPeriodPremium,
-          {
-              key: 'secondPeriodPremium',
-              name: '期交保费',
-              type: 'Long',
-              isReq: 'Y',
-              desc: '次期开始的每期保费'
-          },
         defaults_key.payTime,
           {
               key: 'payType',
@@ -1690,6 +1682,20 @@ const interfaces = {
                         '-1核保失败关闭订单(核保失败，通知水滴关闭订单，关闭后订单不可恢复)'
                 },
                 {
+                    key: 'payTime',
+                    name: '支付时间',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '订单状态orderStatus为1时必传；保司扣费成功的时间；yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'policyTime',
+                    name: '保险公司承保成功时间',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '订单状态orderStatus为3时必传；yyyy-MM-dd HH:mm:ss'
+                },
+                {
                     key: 'needSave',
                     name: '是否需要水滴下载保存电子保单',
                     type: 'Boolean',
@@ -1701,14 +1707,64 @@ const interfaces = {
 		            name: '电子保单',
 		            type: 'String',
 		            isReq: 'N',
-		            desc: ''
+		            desc: '订单状态为orderStatus3时必传'
 	            },
                 {
-                    key: 'reason',
-                    name: '核保失败原因',
+                    key: 'invalidTime',
+                    name: '保单失效时间',
                     type: 'String',
                     isReq: 'N',
-                    desc: '只有orderStatus为-1或-3时才会处理该字段'
+                    desc: '订单状态orderStatus为6时必传；yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'needRefund',
+                    name: '是否需要水滴公司进行退款',
+                    type: 'Boolean',
+                    isReq: 'N',
+                    desc: '订单状态orderStatus为12时必传；水滴会进行校验，不一致时报警'
+                },
+                {
+                    key: 'refundMoneyType',
+                    name: '退保类型',
+                    type: 'Integer',
+                    isReq: 'N',
+                    desc: '订单状态orderStatus为12时必传；短险的退保类型：0：正常退保，按照退款试算接口返回的金额退保；' +
+                        '1：全额退保；2：当期退保；；长险的退保类型：3：犹豫期退保；4：犹豫期外退保；5.生效前退保'
+                },
+                {
+                    key: 'refundActPremium',
+                    name: '实际退款金额',
+                    type: 'Long',
+                    isReq: 'N',
+                    desc: '订单状态orderStatus为12时必传；保险公司退保成功时实际退款金额'
+                },
+                {
+                    key: 'refundReqTime',
+                    name: '退保申请时间',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '订单状态orderStatus为12时必传；指用户跟保司申请退保的时间；yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'refundEffectTime',
+                    name: '退保生效时间',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '订单状态orderStatus为12时必传；指用户退保成功时，保单的失效时间；yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'refundEndTime',
+                    name: '退保完成时间',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '订单状态orderStatus为12时必传；保司系统完成退保操作的时间；yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'reason',
+                    name: '退保/核保失败原因',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '订单状态orderStatus是12/orderStatus为-1或-3时时必传，保司侧统计的用户退保原因/核保失败原因'
                 }
             ]
         }
@@ -2139,15 +2195,7 @@ const interfaces = {
                     isReq: 'Y',
                     desc: ''
                 },
-                defaults_key.proposalNo,
-                defaults_key.firstPeriodPremium,
-                {
-                    key: 'secondPeriodPremium',
-                    name: '期交保费',
-                    type: 'Long',
-                    isReq: 'Y',
-                    desc: '次期开始的每期保费'
-                }
+                defaults_key.proposalNo
             ]
         }
     ],
