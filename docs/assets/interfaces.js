@@ -1429,6 +1429,13 @@ const interfaces = {
                 defaults_key.orderNo,
                 defaults_key.policyNo,
                 {
+                    key: 'productNo',
+                    name: '水滴产品编码',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                {
                     key: 'phyExamResult',
                     name: '体检结果',
                     type: 'Integer',
