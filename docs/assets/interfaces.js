@@ -1156,7 +1156,22 @@ const interfaces = {
               type: 'String',
               isReq: 'Y'
               ,desc: ''
+          },
+          {
+              key: 'refundMoney',
+              name: '实际退款金额',
+              type: 'Long',
+              isReq: 'Y',
+              desc: '用户申请退保时向用户退还的金额（与refundActPremium值相同，代码过度期，暂时需要兼容处理）'
+          },
+          {
+              key: 'inHesitate',
+              name: '犹豫期类型',
+              type: 'Long',
+              isReq: 'Y',
+              desc: '1、犹豫期内；2、犹豫期外普通退款；3、犹豫期外的协议退款（代码过度期，暂时需要兼容处理）'
           }
+
       ]
     }
   ],
