@@ -643,6 +643,20 @@ const interfaces = {
             defaults_key.payFrequency,
             defaults_key.isRenewPolicy,
             defaults_key.parentPolicyNo,
+              {
+                  key: 'renewFirstEffectTime',
+                  name: '首年保单生效时间',
+                  type: 'String',
+                  isReq: 'N',
+                  desc: '开发中；；；yyyy-MM-dd HH:mm:ss'
+              },
+              {
+                  key: 'renewLastSupplierNo',
+                  name: '上年承保保司',
+                  type: 'String',
+                  isReq: 'N',
+                  desc: '开发中；；；'
+              },
             defaults_key.familyBasePolicy,
             defaults_key.productChannel,
             defaults_key.saleNo,
