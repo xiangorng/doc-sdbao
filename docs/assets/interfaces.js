@@ -881,6 +881,14 @@ const interfaces = {
           desc: ''
         },
         defaults_key.proposalNo,
+        defaults_key.firstPeriodPremium,
+          {
+              key: 'secondPeriodPremium',
+              name: '期交保费',
+              type: 'Long',
+              isReq: 'Y',
+              desc: '次期开始的每期保费'
+          },
         defaults_key.payTime,
           {
               key: 'payType',
@@ -2164,7 +2172,15 @@ const interfaces = {
                     isReq: 'Y',
                     desc: ''
                 },
-                defaults_key.proposalNo
+                defaults_key.proposalNo,
+                defaults_key.firstPeriodPremium,
+                {
+                    key: 'secondPeriodPremium',
+                    name: '期交保费',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: '次期开始的每期保费'
+                }
             ]
         }
     ],
