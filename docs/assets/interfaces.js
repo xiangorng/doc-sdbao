@@ -1010,56 +1010,6 @@ const interfaces = {
       ]
     }
   ],
-  退保请求: [
-    defaults_key.supplierNo,
-    {
-      key: 'body',
-      name: '请求信息的主体',
-      type: 'RefundOrderRequestBody',
-      isReq: 'Y',
-      desc: '',
-      children: [
-        defaults_key.orderNo,
-        defaults_key.policyNo,
-        defaults_key.refundType,
-        defaults_key.refundMoneyType,
-        defaults_key.refundActPremium,
-        defaults_key.refundReqTime,
-        defaults_key.refundEffectTime
-      ]
-    }
-  ],
-  退保返回: [
-    defaults_key.supplierNo,
-    defaults_key.code,
-    defaults_key.errorCode,
-    defaults_key.errorMsg,
-    {
-      key: 'body',
-      name: '返回信息的主体',
-      type: 'RefundOrderResultBody',
-      isReq: 'Y',
-      desc: '',
-      children: [
-        defaults_key.orderNo,
-        defaults_key.policyNo,
-          {
-              key: 'refundTime',
-              name: '保险公司操作的退保时间',
-              type: 'String',
-              isReq: 'Y',
-              desc: 'yyyy-MM-dd HH:mm:ss'
-          },
-          {
-              key: 'needRefund',
-              name: '是否需要水滴公司进行退款',
-              type: 'Boolean',
-              isReq: 'Y',
-              desc: '水滴会进行校验，不一致时报警'
-          }
-      ]
-    }
-  ],
   续费请求: [
     defaults_key.supplierNo,
     {
@@ -1095,63 +1045,6 @@ const interfaces = {
       isReq: 'N',
       desc: '成功时必传',
       children: [defaults_key.orderNo, defaults_key.policyNo]
-    }
-  ],
-  退保通知请求: [
-    defaults_key.supplierNo,
-    {
-      key: 'body',
-      name: '请求信息的主体',
-      type: 'RefundNoticeRequestBody',
-      isReq: 'Y',
-      desc: '',
-      children: [
-        defaults_key.orderNo,
-        defaults_key.policyNo,
-        defaults_key.refundMoney,
-        defaults_key.refundEffectTime,
-        defaults_key.refundTime,
-          {
-              key: 'needRefund',
-              name: '是否需要水滴公司进行退款',
-              type: 'Boolean',
-              isReq: 'Y',
-              desc: '水滴会进行校验，不一致时报警'
-          },
-          {
-              key: 'reason',
-              name: '退保原因',
-              type: 'String',
-              isReq: 'Y'
-              ,desc: ''
-          },
-          {
-              key: 'inHesitate',
-              name: '犹豫期类型',
-              type: 'Long',
-              isReq: 'N',
-              desc: '(长险必传)1、犹豫期内；2、犹豫期外普通退款；3、犹豫期外的协议退款'
-          }
-
-      ]
-    }
-  ],
-  退保通知返回: [
-    defaults_key.supplierNo,
-    defaults_key.code,
-    defaults_key.errorCode,
-    defaults_key.errorMsg,
-    {
-      key: 'body',
-      name: '返回信息的主体',
-      type: 'RefundNoticeResultBody',
-      isReq: 'N',
-      desc: '成功时必传',
-      children: [
-        defaults_key.orderNo,
-        defaults_key.policyNo,
-        defaults_key.refundReqTime
-      ]
     }
   ],
     长险锁单请求: [
@@ -1343,46 +1236,6 @@ const interfaces = {
                     type: 'Integer',
                     isReq: 'Y',
                     desc: '0 成功  1失败 保单解锁结果'
-                }
-            ]
-        }
-    ],
-    退保试算请求: [
-        defaults_key.supplierNo,
-        {
-            key: 'body',
-            name: '请求信息的主体',
-            type: 'RefundCalRequestBody',
-            isReq: 'Y',
-            desc: '',
-            children: [
-                defaults_key.orderNo,
-                defaults_key.policyNo,
-                defaults_key.refundReqTime,
-                defaults_key.refundEffectTime
-            ]
-        }
-    ],
-    退保试算返回: [
-        defaults_key.supplierNo,
-        defaults_key.code,
-        defaults_key.errorCode,
-        defaults_key.errorMsg,
-        {
-            key: 'body',
-            name: '返回信息的主体',
-            type: 'RefundCalResultBody',
-            isReq: 'N',
-            desc: '成功时必传',
-            children: [
-                defaults_key.orderNo,
-                defaults_key.policyNo,
-                {
-                    key: 'refundPremium',
-                    name: '应退保费',
-                    type: 'Long',
-                    isReq: 'Y',
-                    desc: '正常退款时的退款金额'
                 }
             ]
         }
@@ -2606,5 +2459,206 @@ const interfaces = {
         defaults_key.supplierNo,
         defaults_key.code,
         defaults_key.errorMsg
+    ],
+
+    退保试算请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'RefundCalRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                defaults_key.refundReqTime,
+                defaults_key.refundEffectTime
+            ]
+        }
+    ],
+    退保试算返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '返回信息的主体',
+            type: 'RefundCalResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'refundPremium',
+                    name: '应退保费',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: '正常退款时的退款金额'
+                },
+                {
+                    key: 'lastPeriodNum',
+                    name: '已收保费的最后期数',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '非分期产品时默认传1'
+                }
+            ]
+        }
+    ],
+    退保请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'RefundOrderRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                defaults_key.refundType,
+                defaults_key.refundMoneyType,
+                defaults_key.refundActPremium,
+                defaults_key.refundReqTime,
+                defaults_key.refundEffectTime
+            ]
+        }
+    ],
+    退保返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '返回信息的主体',
+            type: 'RefundOrderResultBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'lastPeriodNum',
+                    name: '已收保费的最后期数',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '非分期产品时默认传1'
+                },
+                {
+                    key: 'needRefund',
+                    name: '是否需要水滴公司进行退款',
+                    type: 'Boolean',
+                    isReq: 'Y',
+                    desc: '水滴会进行校验，不一致时报警'
+                },
+                {
+                    key: 'refundActPremium',
+                    name: '实际退款金额',
+                    type: 'Long',
+                    isReq: 'N',
+                    desc: 'refundType非1时必传；；；水滴会进行校验'
+                },
+                {
+                    key: 'refundEffectTime',
+                    name: '退保生效时间',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: 'refundType非1时必传；；；yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'refundEndTime',
+                    name: '退保完成时间',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: 'refundType非1时必传；；；yyyy-MM-dd HH:mm:ss'
+                }
+            ]
+        }
+    ],
+    退保通知请求: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'RefundNoticeRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                {
+                    key: 'refundMoneyType',
+                    name: '退保类型',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '0：正常退保，按照退款试算接口返回的金额退保；1：全额退保；2：当期退保；3：犹豫期退保；4：犹豫期外退保；5.生效前退保'
+                },
+                {
+                    key: 'lastPeriodNum',
+                    name: '已收保费的最后期数',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '非分期产品时默认传1'
+                },
+                {
+                    key: 'refundActPremium',
+                    name: '实际退款金额',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: '用户申请退保时向用户退还的金额'
+                },
+                {
+                    key: 'needRefund',
+                    name: '是否需要水滴公司进行退款',
+                    type: 'Boolean',
+                    isReq: 'Y',
+                    desc: '水滴会进行校验，不一致时报警'
+                },
+                {
+                    key: 'refundReqTime',
+                    name: '退保请求时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                defaults_key.refundEffectTime,
+                {
+                    key: 'refundEndTime',
+                    name: '退保完成时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'reason',
+                    name: '退保原因',
+                    type: 'String',
+                    isReq: 'Y'
+                    ,desc: ''
+                }
+
+            ]
+        }
+    ],
+    退保通知返回: [
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg,
+        {
+            key: 'body',
+            name: '返回信息的主体',
+            type: 'RefundNoticeResultBody',
+            isReq: 'N',
+            desc: '成功时必传',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo
+            ]
+        }
     ]
 }
