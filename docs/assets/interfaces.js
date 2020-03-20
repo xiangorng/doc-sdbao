@@ -326,7 +326,7 @@ const defaults_key = {
         name: '退保类型',
         type: 'Integer',
         isReq: 'N',
-        desc: 'refundType非1时必传；；；0：正常退保，按照退款试算接口返回的金额退保；1：全额退保；2：当期退保；3：犹豫期退保；4：犹豫期外退保；5.生效前退保'
+        desc: 'refundType非1时必传；；；0：正常退保，按照退款试算接口返回的金额退保；（短险）1：全额退保；（短险）2：当期退保；（短险）3：犹豫期内退保；（长险）4：犹豫期外正常退保；（长险）5.生效前退保；（长险）6.犹豫期外协议退保（长险）'
     },
     refundActPremium: {
         key: 'refundActPremium',
@@ -1558,8 +1558,9 @@ const interfaces = {
                     name: '退保类型',
                     type: 'Integer',
                     isReq: 'N',
-                    desc: '订单状态orderStatus为12时必传；短险的退保类型：0：正常退保，按照退款试算接口返回的金额退保；' +
-                        '1：全额退保；2：当期退保；；长险的退保类型：3：犹豫期退保；4：犹豫期外退保；5.生效前退保'
+                    desc: '订单状态orderStatus为12时必传；短险的退保类型：0：正常退保，按照退款试算接口返回的金额退保；（短险）' +
+                        '1：全额退保；（短险）2：当期退保；（短险）3：犹豫期内退保；（长险）4：犹豫期外正常退保；（长险）5.生效前退保；' +
+                        '（长险）6.犹豫期外协议退保（长险）'
                 },
                 {
                     key: 'refundActPremium',
@@ -2560,21 +2561,21 @@ const interfaces = {
                     name: '实际退款金额',
                     type: 'Long',
                     isReq: 'N',
-                    desc: 'refundType非1时必传；；；水滴会进行校验'
+                    desc: 'refundType为0时必传；；；水滴会进行校验'
                 },
                 {
                     key: 'refundEffectTime',
                     name: '退保生效时间',
                     type: 'String',
                     isReq: 'N',
-                    desc: 'refundType非1时必传；；；yyyy-MM-dd HH:mm:ss'
+                    desc: 'rrefundType为0时必传；；；yyyy-MM-dd HH:mm:ss'
                 },
                 {
                     key: 'refundEndTime',
                     name: '退保完成时间',
                     type: 'String',
                     isReq: 'N',
-                    desc: 'refundType非1时必传；；；yyyy-MM-dd HH:mm:ss'
+                    desc: 'refundType为0时必传；；；yyyy-MM-dd HH:mm:ss'
                 }
             ]
         }
@@ -2595,7 +2596,8 @@ const interfaces = {
                     name: '退保类型',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '0：正常退保，按照退款试算接口返回的金额退保；1：全额退保；2：当期退保；3：犹豫期退保；4：犹豫期外退保；5.生效前退保'
+                    desc: '0：正常退保，按照退款试算接口返回的金额退保；（短险）1：全额退保；（短险）2：当期退保；（短险）3：犹豫期内退保；' +
+                        '（长险）4：犹豫期外正常退保；（长险）5.生效前退保；（长险）6.犹豫期外协议退保（长险）'
                 },
                 {
                     key: 'lastPeriodNum',
@@ -2658,6 +2660,107 @@ const interfaces = {
             children: [
                 defaults_key.orderNo,
                 defaults_key.policyNo
+            ]
+        }
+    ],
+    退款通知请求:[
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'RefundMoneyNoticeRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children:[
+                {
+                    key: 'orderNo',
+                    name: '水滴订单号',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: ''
+                },
+                defaults_key.policyNo,
+                {
+                    key: 'payActPremium',
+                    name: '实际支付金额',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: '实际支付金额，会与水滴实际支付金额进行比对，比对不成功：水滴报警，返回给保司错误+原因'
+                },
+                {
+                    key: 'refundActPremium',
+                    name: '实际退款金额',
+                    type: 'Long',
+                    isReq: 'Y',
+                    desc: '保司实际退款金额'
+                },
+                {
+                    key: 'refundMoneyTime',
+                    name: '保司退款时间',
+                    type: 'String',
+                    isReq: 'Y',
+                    desc: 'yyyy-MM-dd HH:mm:ss'
+                }
+            ]
+        }
+    ],
+    退款通知返回:[
+        defaults_key.supplierNo,
+        defaults_key.code,
+        defaults_key.errorCode,
+        defaults_key.errorMsg
+    ],
+    退保请求test: [
+        defaults_key.supplierNo,
+        {
+            key: 'body',
+            name: '请求信息的主体',
+            type: 'RefundOrderRequestBody',
+            isReq: 'Y',
+            desc: '',
+            children: [
+                defaults_key.orderNo,
+                defaults_key.policyNo,
+                defaults_key.refundType,
+                defaults_key.refundMoneyType,
+                defaults_key.refundActPremium,
+                defaults_key.refundReqTime,
+                defaults_key.refundEffectTime,
+                {
+                    key: 'refundBankCode',
+                    name: '退款时使用银行卡的银行编码',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '长险犹豫期外退保时必传'
+                },
+                {
+                    key: 'refundBankProvince',
+                    name: '退款时使用银行卡的开户省',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '长险犹豫期外退保时必传'
+                },
+                {
+                    key: 'refundBankCity',
+                    name: '退款时使用银行卡的开户市',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '长险犹豫期外退保时必传'
+                },
+                {
+                    key: 'refundBankCardNo',
+                    name: '退款时使用银行卡的卡号',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '长险犹豫期外退保时必传'
+                },
+                {
+                    key: 'refundBankAccountName',
+                    name: '退款时使用银行卡的开户人姓名',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '长险犹豫期外退保时必传'
+                },
             ]
         }
     ]
