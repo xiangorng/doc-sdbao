@@ -1006,7 +1006,14 @@ const interfaces = {
         defaults_key.orderNo,
         defaults_key.policyNo,
         defaults_key.policyTime,
-	      defaults_key.policyUrl
+	      defaults_key.policyUrl,
+          {
+              key: 'returnVisitUrl',
+              name: '在线回访链接',
+              type: 'String',
+              isReq: 'N',
+              desc: '在线回访专用'
+          }
       ]
     }
   ],
@@ -1980,7 +1987,7 @@ const interfaces = {
                     name: '回访状态',
                     type: 'Integer',
                     isReq: 'Y',
-                    desc: '4.保司电话回访成功;5.保司电话回访中'
+                    desc: '4.保司电话回访成功;5.保司电话回访中;6.保司在线回访成功;7.保司在线回访失败'
                 },
                 {
                     key: 'failMsg',
@@ -2175,7 +2182,7 @@ const interfaces = {
                     name: '体检结果',
                     type: 'Integer',
                     isReq: 'N',
-                    desc: 'phyStatus为4时必传;1:标准体;2:优选体;3:优选除外体'
+                    desc: 'phyStatus为4时必传;1:标准体;2:优选体;3:优选除外体;4:高风险体'
                 },
                 {
                     key: 'exceptDiseaseCode',
