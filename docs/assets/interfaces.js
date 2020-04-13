@@ -2707,6 +2707,20 @@ const interfaces = {
                     type: 'String',
                     isReq: 'Y',
                     desc: 'yyyy-MM-dd HH:mm:ss'
+                },
+                {
+                    key: 'refundMoneyStatus',
+                    name: '保司退款状态',
+                    type: 'Integer',
+                    isReq: 'Y',
+                    desc: '1:成功；2：失败'
+                },
+                {
+                    key: 'failMsg',
+                    name: '退款失败原因',
+                    type: 'String',
+                    isReq: 'N',
+                    desc: '退款失败时必传'
                 }
             ]
         }
